@@ -150,8 +150,8 @@
 
 ### 6. 팀 소개
 | MEMBER1 | MEMBER2 | MEMBER3 | MEMBER4 | MEMBER5 |
-|:-------:|:-------:|:-------:|
-||||||
+|:-------:|:-------:|:-------:|:-------:|:-------:|
+| | | | | |
 | liy03@pusan.ac.kr | uitopia04@pusan.ac.kr | jshin27@pusan.ac.kr | jeeasun@naver.com | 0321bsg@naver.com |
 | 안드로이드 개발 | DB & 인프라 구축 <br/> 백앤드 개발 | 안드로이드 개발 | | |
 
