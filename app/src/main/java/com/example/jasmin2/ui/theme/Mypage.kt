@@ -3,7 +3,6 @@ package com.example.jasmin2.ui.theme
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,16 +11,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -43,8 +36,7 @@ fun MypageScreen() {
 //topbat로 수정할려면 scaffold로 리팩토링
     Column(
         verticalArrangement = Arrangement.Top, //top에서부터 수직으로 정렬
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
 
     ) {
         Row(
@@ -56,17 +48,14 @@ fun MypageScreen() {
         ) // Row 안의 항목들을 수직 중앙에 배치
         {
             Text(
-                text = "마이페이지",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.ExtraBold
+                text = "마이페이지", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold
             )
         }
         Column(
             modifier = Modifier
                 .height(190.dp) //???
                 .border(
-                    width = 1.dp,
-                    color = Color(0xFFF0F0F0)
+                    width = 1.dp, color = Color(0xFFF0F0F0)
                 )
         ) {
             Box(
@@ -76,7 +65,7 @@ fun MypageScreen() {
 
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.munmeo),
+                    painter = painterResource(id = R.drawable.gym2),
                     contentDescription = "고양이미오",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -183,155 +172,53 @@ fun MypageScreen() {
                 .height(190.dp)
                 .background(color = Color(0xFFE4E4E4))
         ) {}
-
-
-//광고 넣을곳
-
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE2E2E2)
-                )
-        ) {
-            Text(
-                text = "결제 내역",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x=16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x=(-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-        ) {
-            Text(
-                text = "회원권",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x=16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x=(-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE2E2E2)
-                )
-        ) {
-            Text(
-                text = "후기 관리",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x=16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x=(-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-        ){
-            Text(
-                text = "문의",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x=16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x=(-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE2E2E2)
-                )
-        ){
-            Text(
-                text = "로그아웃",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x=16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x=(-16).dp)
-
-            )
-        }
+        
+        Mypagenev(title = "결제내역" )
+        Mypagenev(title = "회원권" )
+        Mypagenev(title = "후기관리" )
+        Mypagenev(title = "문의" )
+        Mypagenev(title = "로그아웃" )
 
 
     }
 }
 
+//광고 넣을곳
+
+@Composable
+fun Mypagenev(title: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .border(
+                width = 1.dp, color = Color(0xFFE2E2E2)
+            )
+    ) {
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .offset(x = 16.dp)
+        )
+
+        Image(
+            imageVector = Icons.Default.KeyboardArrowRight,
+            contentDescription = "arrow image",
+            modifier = Modifier
+                .size(30.dp)
+                .align(Alignment.CenterEnd)
+                .offset(x = (-16).dp)
+
+        )
+    }
+}
 
 
-@Preview(showSystemUi = true, showBackground = true)
+
+
+@Preview(showBackground = true)
 @Composable
 private fun MypagePreview() {
     MypageScreen()
