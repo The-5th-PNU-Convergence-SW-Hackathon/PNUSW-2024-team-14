@@ -67,7 +67,7 @@ private fun StartIcons(
         )
 
         Image(
-            painter = painterResource(id = R.drawable.startimage2),
+            painter = painterResource(id = R.drawable.`startimage2`),
             contentDescription = "start image",
             modifier = Modifier
                 .size(400.dp)
