@@ -46,7 +46,7 @@ import com.example.jasmin2.R
 data class Gym(val name: String)
 
 @Composable
-fun MyScroll() {
+fun ScrollScreen() {
     Scaffold(
         topBar = {
             TopBar()

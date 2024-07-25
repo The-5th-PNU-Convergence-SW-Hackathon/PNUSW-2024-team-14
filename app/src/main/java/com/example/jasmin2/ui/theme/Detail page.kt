@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.example.jasmin2.R
 
 @Composable
-fun MyDetailpage(){
+fun MyDetailScreen(){
     Column {
         DetailImageCard()
         DetailGymInfo()
@@ -191,5 +191,5 @@ fun MembershipScreen() {
 @Composable
 fun MyAppContentPreview() {
     //MyScroll()
-    MyDetailpage()
+    MyDetailScreen()
 }
