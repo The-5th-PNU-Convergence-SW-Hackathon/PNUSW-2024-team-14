@@ -18,7 +18,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
@@ -273,22 +272,6 @@ fun AlarmIcon(){
     ) {
         Icon(imageVector = Icons.Default.Notifications,
             contentDescription = "alarm",
-            modifier = Modifier.size(30.dp),
-
-            )
-    }
-}
-
-// 뒤로가기 버튼
-@Composable
-fun UpButton(){
-    IconButton(
-        onClick = { /*TODO*/ },
-        modifier = Modifier.size(50.dp)
-
-    ) {
-        Icon(imageVector = Icons.Default.KeyboardArrowLeft,
-            contentDescription = "upbutton",
             modifier = Modifier.size(30.dp),
 
             )
