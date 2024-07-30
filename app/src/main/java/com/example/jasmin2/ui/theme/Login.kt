@@ -9,16 +9,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -30,6 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -53,6 +56,9 @@ fun LoginScreen() {
             val emailState = remember { mutableStateOf(TextFieldValue()) }
             val passwordState = remember { mutableStateOf(TextFieldValue()) }
 
+
+            Spacer(modifier = Modifier.height(20.dp))
+
             UnderlinedTextField(
                 value = emailState.value,
                 onValueChange = { emailState.value = it },
@@ -67,17 +73,34 @@ fun LoginScreen() {
                 onValueChange = { passwordState.value = it },
                 label = { Text("비밀번호") },
                 modifier = Modifier.fillMaxWidth(),
-                visualTransformation = VisualTransformation.None,
-                keyboardOptions = KeyboardOptions.Default,
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                ),
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
             Button(
                 onClick = { /* TODO: Handle login click */ },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(0.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF333599),
+                    contentColor = Color.White,
+                    disabledContainerColor = Color(0x73333599),
+                    disabledContentColor = Color.White,
+                ),
+
             ) {
-                Text("로그인")
+                Text(
+                    text = "로그인",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp,
+                    color = Color.White,
+                )
             }
 
             Spacer(modifier = Modifier.weight(1f))
@@ -86,12 +109,12 @@ fun LoginScreen() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text("페이퍼가 처음이신가요? ")
+                Text("페이퍼가 처음이신가요?")
                 Text(
                     text = "가입하기",
-                    color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.clickable { /* TODO: Handle sign up click */ }
+                    modifier = Modifier.clickable { /* TODO: Handle sign up click */ },
+                    color = Color(0xFF333599)
                 )
             }
         }
@@ -101,15 +124,20 @@ fun LoginScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarlog(title: String) {
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
         CenterAlignedTopAppBar(
+            modifier = Modifier.height(50.dp),
             title = {
                 Row(
-                    modifier = Modifier.height(30.dp),
+                    modifier = Modifier.padding(top=12.dp)
                 ) {
                     Text(
                         text = title,
-                        fontSize = 20.sp
+                        fontSize = 17.sp,
+                        color = Color.Gray
                     )
                 }
             },
@@ -123,8 +151,8 @@ fun TopBarlog(title: String) {
             }
         )
         Divider(
-            color = Color.Gray,
-            thickness = 1.dp
+            color = Color.LightGray,
+            thickness = 2.dp
         )
     }
 }
