@@ -121,6 +121,89 @@ fun LoginScreen() {
     }
 }
 
+@Composable
+fun SignupScreen(){
+    Scaffold(
+        topBar = {
+            TopBarlog(title = "회원가입")
+        }
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            val idState = remember { mutableStateOf(TextFieldValue()) }
+            val emailState = remember { mutableStateOf(TextFieldValue()) }
+            val passwordState = remember { mutableStateOf(TextFieldValue()) }
+
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            UnderlinedTextField(
+                value = idState.value,
+                onValueChange = { idState.value = it },
+                label = { Text("아이디") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            UnderlinedTextField(
+                value = emailState.value,
+                onValueChange = { emailState.value = it },
+                label = { Text("이메일 주소") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            UnderlinedTextField(
+                value = passwordState.value,
+                onValueChange = { passwordState.value = it },
+                label = { Text("비밀번호") },
+                modifier = Modifier.fillMaxWidth(),
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                ),
+            )
+
+            Spacer(modifier = Modifier.height(50.dp))
+
+            Button(
+                onClick = { /* TODO: Handle login click */ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(0.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF333599),
+                    contentColor = Color.White,
+                    disabledContainerColor = Color(0x73333599),
+                    disabledContentColor = Color.White,
+                ),
+
+                ) {
+                Text(
+                    text = "회원가입",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp,
+                    color = Color.White,
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+        }
+    }
+}
+
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarlog(title: String) {

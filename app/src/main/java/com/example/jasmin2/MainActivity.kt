@@ -8,6 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.jasmin2.ui.theme.LoginScreen
 import com.example.jasmin2.ui.theme.MyDetailScreen
 import com.example.jasmin2.ui.theme.ScrollScreen
+import com.example.jasmin2.ui.theme.SignupScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,7 @@ class MainActivity : ComponentActivity() {
             ScrollScreen()
             MyDetailScreen()
             LoginScreen()
+            SignupScreen()
         }
     }
 }
@@ -23,7 +25,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MyAppContentPreview() {
-    LoginScreen()
+    SignupScreen()
 }
 
 
