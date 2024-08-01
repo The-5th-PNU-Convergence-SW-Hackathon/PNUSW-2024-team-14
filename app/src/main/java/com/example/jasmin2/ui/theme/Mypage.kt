@@ -3,25 +3,10 @@ package com.example.jasmin2.ui.theme
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,19 +20,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
-
 
 @Composable
 fun MypageScreen() {
-//topbat로 수정할려면 scaffold로 리팩토링
+    //topbar로 수정할려면 scaffold로 리팩토링
     Column(
         verticalArrangement = Arrangement.Top, //top에서부터 수직으로 정렬
-        modifier = Modifier
-            .fillMaxSize()
-
+        modifier = Modifier.fillMaxSize()
     ) {
         Row(
             horizontalArrangement = Arrangement.Center, // Row 안의 항목들을 수평 중앙에 배치
@@ -55,8 +35,7 @@ fun MypageScreen() {
                 .fillMaxWidth()
                 .height(70.dp),
             verticalAlignment = Alignment.CenterVertically
-        ) // Row 안의 항목들을 수직 중앙에 배치
-        {
+        ) {
             Text(
                 text = "마이페이지",
                 fontSize = 20.sp,
@@ -67,18 +46,16 @@ fun MypageScreen() {
             modifier = Modifier
                 .height(190.dp) //???
                 .border(
-                    width = 1.dp,
-                    color = Color(0xFFF0F0F0)
+                    width = 1.dp, color = Color(0xFFF0F0F0)
                 )
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(130.dp)
-
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.munmeo),
+                    painter = painterResource(id = R.drawable.gym2),
                     contentDescription = "고양이미오",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -110,7 +87,6 @@ fun MypageScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(30.dp)
-
             ) {
                 Text(
                     text = "포인트",
@@ -144,8 +120,6 @@ fun MypageScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(30.dp)
-
-
             ) {
                 Text(
                     text = "2000p",
@@ -155,7 +129,6 @@ fun MypageScreen() {
                         .align(Alignment.CenterStart)
                         .offset(x = 16.dp, y = (-15).dp),
                 )
-
                 Text(
                     text = "3개",
                     fontSize = 12.sp,
@@ -164,7 +137,6 @@ fun MypageScreen() {
                         .align(Alignment.Center)
                         .offset(x = 80.dp, y = (-15).dp),
                 )
-
                 Text(
                     text = "찜",
                     fontSize = 12.sp,
@@ -176,9 +148,7 @@ fun MypageScreen() {
             }
         }
 
-
-//광고 넣을곳
-
+        // 광고 넣을곳
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -186,157 +156,45 @@ fun MypageScreen() {
                 .background(color = Color(0xFFE4E4E4))
         ) {}
 
-
-//광고 넣을곳
-
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE2E2E2)
-                )
-        ) {
-            Text(
-                text = "결제 내역",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x = 16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x = (-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-        ) {
-            Text(
-                text = "회원권",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x = 16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x = (-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE2E2E2)
-                )
-        ) {
-            Text(
-                text = "후기 관리",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x = 16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x = (-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-        ){
-            Text(
-                text = "문의",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x = 16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x = (-16).dp)
-
-            )
-        }
-
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE2E2E2)
-                )
-        ){
-            Text(
-                text = "로그아웃",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .offset(x = 16.dp)
-            )
-
-            Image(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "arrow image",
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.CenterEnd)
-                    .offset(x = (-16).dp)
-
-            )
-        }
-
-
+        // 공통된 박스 항목을 위한 재사용 가능한 컴포저블 호출
+        MypageNavItem(title = "결제내역")
+        MypageNavItem(title = "회원권")
+        MypageNavItem(title = "후기관리")
+        MypageNavItem(title = "문의")
+        MypageNavItem(title = "로그아웃")
     }
 }
 
+@Composable
+fun MypageNavItem(title: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .border(
+                width = 1.dp, color = Color(0xFFE2E2E2)
+            )
+    ) {
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .offset(x = 16.dp)
+        )
+        Image(
+            imageVector = Icons.Default.KeyboardArrowRight,
+            contentDescription = "arrow image",
+            modifier = Modifier
+                .size(30.dp)
+                .align(Alignment.CenterEnd)
+                .offset(x = (-16).dp)
+        )
+    }
+}
 
-
-@Preview(showSystemUi = true, showBackground = true)
+@Preview(showBackground = true)
 @Composable
 private fun MypagePreview() {
     MypageScreen()
 }
-
-
