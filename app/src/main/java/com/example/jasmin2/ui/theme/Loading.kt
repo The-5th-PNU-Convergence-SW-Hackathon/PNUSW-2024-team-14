@@ -21,7 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
+import kotlinx.coroutines.delay
 
 
 enum class ImageState(val alpha: Float) {
@@ -31,16 +34,18 @@ enum class ImageState(val alpha: Float) {
 
 
 @Composable
-fun StartScreen() {
+fun StartScreen(navController: NavController) {
     var imageState by remember { mutableStateOf(ImageState.INVISIBLE) }
     val imageAlpha by animateFloatAsState(
         targetValue = imageState.alpha,
         animationSpec = tween(4000),
         label = "ImageAlpha"
     )
-    LaunchedEffect(Unit) {
 
+    LaunchedEffect(Unit) {
         imageState = ImageState.VISIBLE
+        delay(5000)
+        navController.navigate("my-page")
     }
 
     StartIcons(alpha = imageAlpha)
@@ -59,28 +64,21 @@ private fun StartIcons(
     ) {
         Text(
             text = "PAY PER",
+
             fontWeight = FontWeight.ExtraBold,
             fontSize = 40.sp,
             modifier = Modifier
-                .padding(bottom=16.dp)
+                .padding(bottom = 16.dp)
                 .alpha(alpha)
         )
 
-        Image(
-            painter = painterResource(id = R.drawable.`startimage2`),
-            contentDescription = "start image",
-            modifier = Modifier
-                .size(400.dp)
-                .padding(top = 40.dp)
-                .offset(x = (-13).dp)
-                .alpha(alpha)
 
-        )
     }
 }
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 private fun StartPreview() {
-    StartScreen()
+    val navController = rememberNavController()
+    StartScreen(navController = navController)
 }
