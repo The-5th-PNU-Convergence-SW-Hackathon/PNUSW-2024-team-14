@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jasmin2.ui.theme.Explain1
 import com.example.jasmin2.ui.theme.MypageScreen
 import com.example.jasmin2.ui.theme.StartScreen
 
@@ -35,5 +36,6 @@ fun NavGraph(navController: NavController) {
     NavHost(navController = navController, startDestination = "start") {
         composable("start") { StartScreen(navController) }
         composable("my-page") { MypageScreen() }
+        composable("explain1"){Explain1(navController)}
     }
 }

@@ -2,10 +2,11 @@ package com.example.jasmin2.ui.theme
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,14 +41,14 @@ fun StartScreen(navController: NavController) {
     var imageState by remember { mutableStateOf(ImageState.INVISIBLE) }
     val imageAlpha by animateFloatAsState(
         targetValue = imageState.alpha,
-        animationSpec = tween(4000),
+        animationSpec = tween(3000),
         label = "ImageAlpha"
     )
 
     LaunchedEffect(Unit) {
         imageState = ImageState.VISIBLE
-        delay(5000)
-        navController.navigate("my-page")
+        delay(4000)
+        navController.navigate("explain1")
     }
 
     StartIcons(alpha = imageAlpha)
@@ -58,17 +61,18 @@ private fun StartIcons(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(color = Color(0xFF333599)),
         horizontalAlignment = Alignment.CenterHorizontally, //수평에서 중앙에 오게
-        verticalArrangement = Arrangement.Bottom //수직에서 밑에오게
+        verticalArrangement = Arrangement.Center //수직에서 밑에오게
     ) {
-        Text(
-            text = "PAY PER",
 
-            fontWeight = FontWeight.ExtraBold,
-            fontSize = 40.sp,
+        Text(
+            text = "pay per",
+            fontFamily = montsFamily,
+            fontWeight = FontWeight.Bold,
+            fontSize = 50.sp,
+            style = TextStyle(color = Color.White),
             modifier = Modifier
-                .padding(bottom = 16.dp)
                 .alpha(alpha)
         )
 
@@ -80,5 +84,6 @@ private fun StartIcons(
 @Composable
 private fun StartPreview() {
     val navController = rememberNavController()
-    StartScreen(navController = navController)
+    Jasmin2Theme{
+    StartScreen(navController = navController) }
 }
