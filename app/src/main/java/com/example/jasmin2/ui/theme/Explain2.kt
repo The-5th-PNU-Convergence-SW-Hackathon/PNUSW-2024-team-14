@@ -30,18 +30,19 @@ import com.example.jasmin2.R
 @Composable
 fun Explain2(navController: NavController) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
+modifier = Modifier
+    .fillMaxSize()
     ) {
         Image(
             painter = painterResource(id = R.drawable.g52),
             contentDescription = "고양이미오",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxSize()
+                .offset(100.dp)
+
                 .align(Alignment.Center)
-                .offset(50.dp)
+
+
         )
 
         Button(
