@@ -10,22 +10,25 @@ import com.example.jasmin2.ui.theme.MyDetailScreen
 import com.example.jasmin2.ui.theme.ScrollScreen
 import com.example.jasmin2.ui.theme.SignupScreen
 
+@Composable
+fun CombinedScreens() {
+    ScrollScreen()
+    MyDetailScreen()
+    LoginScreen()
+    SignupScreen()
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ScrollScreen()
             MyDetailScreen()
-            LoginScreen()
-            SignupScreen()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun MyAppContentPreview() {
-    LoginScreen()
+fun JasminPreview() {
+    MyDetailScreen()
 }
-
-

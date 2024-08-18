@@ -2,14 +2,18 @@ package com.example.jasmin2.ui.theme
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -30,7 +34,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,6 +47,7 @@ fun MyDetailScreen(){
     Column {
         DetailImageCard()
         DetailGymInfo()
+        Spacer(modifier = Modifier.height(10.dp))
         MembershipScreen()
     }
 }
@@ -55,40 +62,97 @@ fun DetailImageCard(){
     ){
         Box(
             modifier = Modifier
-                .size(395.dp, 350.dp) // Box 크기 지정
+                .size(450.dp) // Box 크기 지정
                 .clip(RectangleShape) // 크롭을 위한 클리핑
             ,
             ){
+            //업체 이미지
             Image(painter = painterResource(id = R.drawable.gym2),
                 contentDescription = "헬스장 이미지",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
-            //아이콘
+            // 불투명 박스 + 헬스장명, 주소
             Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.BottomEnd
-            ){
-                IconButton(
-                    onClick = {
-                        isFavorite.value = !isFavorite.value },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.35f)) // 불투명한 박스 설정
+            ) {
+                Column(
                     modifier = Modifier
-                        .size(80.dp) // IconButton의 크기
-
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.Bottom,
+                    horizontalAlignment = Alignment.Start
                 ) {
-                    Icon(
-                        imageVector = if (isFavorite.value) Icons.Default.Favorite else Icons.Default.FavoriteBorder ,
-                        contentDescription = "Favorite",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .size(50.dp)
+                    Text(
+                        text = "워너짐 부산대점",
+                        color = Color.White,
+                        fontSize = 30.sp,
+                        fontWeight = FontWeight.Bold
                     )
+                    Text(
+                        text = "부산광역시 금정구 장전동 420-47 지하1층",
+                        color = Color.White,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(30.dp))
+                    // 운영중 + 로고
+                    Row(
+                        verticalAlignment =  Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "운영중",
+                            color = Color.White,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Image(painter = painterResource(id = R.drawable.paper_logo),
+                            contentDescription = "로고",
+                            modifier = Modifier.size(80.dp)
+                        )
+
+                        Spacer(modifier = Modifier.width(150.dp))
+
+
+                        IconButton(
+                            onClick = {
+                                isFavorite.value = !isFavorite.value },
+                            modifier = Modifier
+                                .size(80.dp) // IconButton의 크기
+
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.CenterEnd // 왼쪽 상단에 정렬
+                            ) {
+                                Icon(
+                                    imageVector = if (isFavorite.value) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                                    contentDescription = "Favorite",
+                                    tint = Color.White,
+                                    modifier = Modifier
+                                        .size(50.dp)
+                                        .padding(end = 10.dp)
+                                )
+                            }
+                        }
+
+                    }
+
+
                 }
+
             }
+
         }
     }
 }
 
+/*
 @Composable
 fun DetailGymInfo(){
     Column {
@@ -98,17 +162,13 @@ fun DetailGymInfo(){
             .padding(horizontal = 15.dp)
             .padding(vertical = 5.dp)
         ){
-            Text(
+            /*Text(
                 text = "ABC 헬스장",
                 fontSize = 23.sp,
                 fontWeight = FontWeight.Bold
-            )
+            )*/
         }
-        Divider(
-            color = Color.Gray, // 선의 색상
-            thickness = 1.dp,  // 선의 두께
-            modifier = Modifier.padding(vertical = 8.dp) // 선 주위의 패딩
-        )
+
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(25.dp)
@@ -144,29 +204,151 @@ fun DetailGymInfo(){
     }
 }
 
+ */
+
+@Composable
+fun DetailGymInfo(){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(120.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .padding(top = 25.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally // 가로 방향으로 가운데 정렬
+            ) {
+                Text(
+                    text = "평점",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                    )
+                Spacer(modifier = Modifier.height(15.dp))
+                Row {
+                    Icon(
+                        imageVector = Icons.Default.Star,
+                        contentDescription = "Star",
+                        modifier = Modifier.size(20.dp),
+                        tint = Color(0xFFFFD700), // 진한 노란색
+                    )
+                    Text(
+                        text = " 4.9",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Gray,
+                        modifier = Modifier.padding(top=2.dp)
+                    )
+                }
+
+            }
+        }
+
+        Divider(
+            color = Color.LightGray,
+            modifier = Modifier
+                .height(110.dp) // Row의 전체 높이만큼 세로선
+                .width(2.dp) // 선의 두께
+                .padding(top = 10.dp)
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .padding(top = 25.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally // 가로 방향으로 가운데 정렬
+            ) {
+                Text(
+                    text = "영업 중",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+
+                )
+                Spacer(modifier = Modifier.height(15.dp))
+                Text(
+                    text = "24:00에 영업 종료",
+                    color = Color.Gray
+                )
+            }
+
+        }
+
+        Divider(
+            color = Color.LightGray,
+            modifier = Modifier
+                .height(110.dp) // Row의 전체 높이만큼 세로선
+                .width(2.dp) // 선의 두께
+                .padding(top = 10.dp)
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .padding(top = 25.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally // 가로 방향으로 가운데 정렬
+            ) {
+                Text(
+                    text = "리뷰 수",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    text = "3",
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    text = "전체 리뷰 보기",
+                    fontSize =12.sp,
+                    color = Color.Gray,
+                    style = TextStyle(
+                        textDecoration = TextDecoration.Underline // 밑줄 추가
+                    ),
+
+                )
+            }
+
+        }
+    }
+}
+
+
 @Composable
 fun MembershipCard(title: String, price: String){
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp)
+            .height(110.dp)
             .padding(horizontal = 30.dp)
             .padding(vertical = 8.dp)
-            .shadow(4.dp)
+            .shadow(4.dp, RoundedCornerShape(16.dp)) // 그림자 추가 및 모양 설정
             .background(Color.White)
             .padding(15.dp)
+            .clip(RoundedCornerShape(16.dp)) // 모서리가 둥근 사각형으로 자르기
 
     ) {
         Column {
             Text(
                 text = title,
                 fontWeight = FontWeight.Bold,
-                fontSize = 15.sp,
+                fontSize = 17.sp,
                 color = Color.Black
             )
             Box( modifier = Modifier
                 .fillMaxWidth()
-                .height(60.dp),
+                .height(40.dp),
                 contentAlignment = Alignment.BottomEnd) {
                 Text(
                     text = price,
