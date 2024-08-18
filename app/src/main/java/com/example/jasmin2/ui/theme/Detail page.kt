@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -44,11 +46,16 @@ import com.example.jasmin2.R
 
 @Composable
 fun MyDetailScreen(){
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()) // 세로 스크롤 추가
+    ) {
         DetailImageCard()
         DetailGymInfo()
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(15.dp))
         MembershipScreen()
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }
 
@@ -111,7 +118,7 @@ fun DetailImageCard(){
 
                         Spacer(modifier = Modifier.width(10.dp))
 
-                        Image(painter = painterResource(id = R.drawable.paper_logo),
+                        Image(painter = painterResource(id = R.drawable.logo),
                             contentDescription = "로고",
                             modifier = Modifier.size(80.dp)
                         )
@@ -365,6 +372,7 @@ fun MembershipCard(title: String, price: String){
 fun MembershipScreen() {
     Column {
         MembershipCard(title = "1개월 회원권", price = "35000원~/월")
+        Spacer(modifier = Modifier.height(5.dp))
         MembershipCard(title = "3개월 회원권", price = "35000원~/월")
     }
 }
