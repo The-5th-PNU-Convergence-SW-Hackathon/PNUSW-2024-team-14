@@ -10,6 +10,10 @@ import androidx.compose.foundation.shape.CircleShape
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Button
@@ -147,6 +151,9 @@ fun TopSearchBar(
 
 @Composable
 fun GymInfoCard(navController:NavController) {
+    val imageState = remember { mutableStateOf(R.drawable.gym2) }
+    val textState = remember { mutableStateOf("워너짐 장전동 ★4.8") }
+    val ExplainState = remember { mutableStateOf("올해 초 오픈한 신규 헬스장이에요! 최신 시설을\n검증된 트레이너와 함께 즐겨보세요!") }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -179,47 +186,104 @@ fun GymInfoCard(navController:NavController) {
         }
         Spacer(modifier = Modifier.height(20.dp))
 
+
+
+
         // 헬스장 이미지
     Box(
+        modifier = Modifier
+            .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ){
+        Box(modifier = Modifier.fillMaxWidth()) {
+            IconButton(
+                onClick = {
+                    imageState.value = R.drawable.gym3
+                    textState.value = "비너스짐 부산대점 ★4.6"
+                    ExplainState.value = "근방에서 가장 회원 수가 많은 헬스장이에요!\n부산대역과 도보 5분거리에요!"
+                },
+                modifier = Modifier
+                    .size(48.dp)
+                    .align(Alignment.CenterEnd)
+
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, // 표시할 아이콘
+                    contentDescription = "Favorite Icon", // 접근성 설명
+                    tint = Color.Gray, // 아이콘의 색상
+                    modifier = Modifier
+                        .size(48.dp)
+                        .align(Alignment.CenterEnd)
+                        .offset(x=(8).dp)
+                )
+
+            }
+            IconButton(
+                onClick = {
+                    imageState.value = R.drawable.gym2
+                    textState.value = "워너짐 장전점 ★4.8"
+                    ExplainState.value = "올해 초 오픈한 신규 헬스장이에요! 최신 시설을\n검증된 트레이너와 함께 즐겨보세요!"
+                },
+                modifier = Modifier
+                    .size(48.dp)
+                    .align(Alignment.CenterStart)
+
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, // 표시할 아이콘
+                    contentDescription = "Favorite Icon", // 접근성 설명
+                    tint = Color.Gray, // 아이콘의 색상
+                    modifier = Modifier
+                        .size(48.dp)
+                        .align(Alignment.CenterStart)
+                        .offset(x=(-8).dp)
+                )
+
+            }
+        }
+
+
         Surface(
             shape = RoundedCornerShape(16.dp),
             shadowElevation = 8.dp,
             modifier = Modifier
-
-                .width(360.dp)
-                .height(500.dp)
-                .padding(start = 26.dp),
-
+                .width(320.dp)
+                .height(510.dp)
+                .align(Alignment.Center)
 
         ) {
-            Column {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.Center)
+
+            ) {
                 Image(
-                    painter = painterResource(id = R.drawable.gym2), // Replace with actual image resource
+                    painter = painterResource(id = imageState.value), // Replace with actual image resource
                     contentDescription = null,
                     modifier = Modifier
                         .width(320.dp)
-                        .height(340.dp)
-                        .padding(start = 25.dp, top = 26.dp, end = 10.dp)
+                        .height(360.dp)
+                        .align(Alignment.CenterHorizontally)
+                        .padding(20.dp)
                         .clip(RoundedCornerShape(25.dp)),
                     contentScale = ContentScale.Crop
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(0.dp))
 
                 Text(
-                    text = "워너짐 장전동 ★4.8",
+                    text = textState.value,
                     color = Color.Black,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(horizontal = 25.dp, vertical = 3.dp)
+                    modifier = Modifier.padding(start = 20.dp)
                 )
 
                 Spacer(modifier = Modifier.height(3.dp))
 
                 Text(
-                    text = "올해 초 오픈한 신규 헬스장이에요! 최신 시설을\n검증된 트레이너와 함께 즐겨보아요.",
+                    text = ExplainState.value,
                     color = Color.Black,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
