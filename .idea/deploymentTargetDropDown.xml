@@ -3,10 +3,20 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="MyAppContentPreview">
-        <State />
-      </entry>
-      <entry key="MypagePreview">
-        <State />
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\as243\.android\avd\Medium_Phone_API_VanillaIceCream.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-08-13T12:42:08.485548400Z" />
+        </State>
       </entry>
       <entry key="app">
         <State>
@@ -16,12 +26,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\as243\.android\avd\Small_Phone_API_VanillaIceCream.avd" />
+                  <value value="C:\Users\as243\.android\avd\Medium_Phone_API_VanillaIceCream.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-25T09:48:39.774485900Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-08-19T13:33:42.829244Z" />
         </State>
       </entry>
     </value>

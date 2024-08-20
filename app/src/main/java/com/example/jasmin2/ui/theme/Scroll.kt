@@ -2,6 +2,7 @@ package com.example.jasmin2.ui.theme
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,12 +42,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
 
 data class Gym(val name: String)
 
+
 @Composable
-fun MyScroll() {
+fun MyScroll(navController: NavController) {
     Scaffold(
         topBar = {
             TopBar()
@@ -61,14 +65,14 @@ fun MyScroll() {
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            MyAppContent()
+            MyAppContent(navController)
         }
     }
 }
 
 
 @Composable
-fun MyAppContent() {
+fun MyAppContent(navController: NavController) {
     val gyms = List(10) { index -> Gym("헬스장 $index") }
     LazyColumn(
         modifier = Modifier
@@ -91,7 +95,7 @@ fun MyAppContent() {
                             .height(320.dp),
                         contentAlignment = Alignment.TopCenter
                     ) {
-                        GymInfo()
+                        GymInfo(navController)
                     }
                 }
                 // 나누어진 pair가 홀수개라 하나만 남는경우 empty하게 출력
@@ -101,7 +105,7 @@ fun MyAppContent() {
                             .weight(1f)
                             .height(320.dp)
                     ){
-                        GymInfo()
+                        GymInfo(navController)
                     }
                 }
             }
@@ -111,9 +115,9 @@ fun MyAppContent() {
 
 //헬스장 정보 한칸
 @Composable
-fun GymInfo(){
+fun GymInfo(navController: NavController){
     Column {
-        ImageCard()
+        ImageCard(navController)
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(40.dp)
@@ -177,7 +181,7 @@ fun GymInfo(){
 
 // 이미지와 아이콘
 @Composable
-fun ImageCard(){
+fun ImageCard(navController: NavController){
     val isFavorite = remember{
         mutableStateOf(false)
     }
@@ -194,7 +198,12 @@ fun ImageCard(){
             Image(painter = painterResource(id = R.drawable.download),
                 contentDescription = "헬스장 이미지",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable {
+                        // 이미지 클릭 시 네비게이션 실행
+                        navController.navigate("detail")
+                    }
             )
             //아이콘
             Box(

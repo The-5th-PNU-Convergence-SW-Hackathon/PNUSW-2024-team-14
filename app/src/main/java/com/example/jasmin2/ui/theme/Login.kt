@@ -1,14 +1,18 @@
 package com.example.jasmin2.ui.theme
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -29,17 +33,25 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopBarlog(title = "로그인")
@@ -80,28 +92,40 @@ fun LoginScreen() {
             )
 
             Spacer(modifier = Modifier.height(50.dp))
-
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+){
             Button(
-                onClick = { /* TODO: Handle login click */ },
+                onClick = {
+                    navController.navigate("explain1")
+                },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                shape = RoundedCornerShape(0.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF333599),
-                    contentColor = Color.White,
-                    disabledContainerColor = Color(0x73333599),
-                    disabledContentColor = Color.White,
-                ),
+                    .align(Alignment.BottomCenter)
+                    .offset(y = (-25).dp)
+                    .padding(bottom = 16.dp)
+                    .width(300.dp)  // 버튼의 가로 길이
+                    .height(40.dp)
+                    .clip(RoundedCornerShape(19.dp))
+                    .background(
+                        brush= Brush.linearGradient(colors=JasminGrad, start= Offset.Zero,end= Offset.Infinite))
+                , // 버튼의 높이
 
-            ) {
-                Text(
-                    text = "로그인",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp,
-                    color = Color.White,
-                )
-            }
+                shape= RoundedCornerShape(15.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Transparent, // 버튼의 기본 배경색을 투명하게 설정
+                    contentColor = Color.White // 텍스트 색상
+                ),
+                content= {
+                    Text(
+                        text = "로그인",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                }
+            )}
 
             Spacer(modifier = Modifier.weight(1f))
 
@@ -264,4 +288,10 @@ fun UnderlinedTextField(
             disabledBorderColor = Color.Gray
         )
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun LoginPreview() {
+    LoginScreen(navController = rememberNavController())
 }
