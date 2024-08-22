@@ -4,13 +4,14 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
+
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+
 import androidx.compose.material3.Text
 
 import androidx.compose.runtime.Composable
@@ -27,7 +28,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
+
 
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.jasmin2.R
+
 import kotlinx.coroutines.delay
 
 
@@ -167,17 +168,21 @@ enum class ImageState(val alpha: Float) {
                         .alpha(alpha)
                         .width(300.dp)
                         .height(40.dp)
-                        .background(
-                            brush = Brush.linearGradient(colors = JasminGrad, start = Offset.Zero, end = Offset.Infinite))
+
                         .clip(RoundedCornerShape(19.dp)),
                     shape = RoundedCornerShape(15.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White // 원하는 색상으로 변경
+                    ),
 
                     content = {
                         Text(
                             text = "로그인",
                             style = TextStyle(
                                 fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                brush = Brush.linearGradient(
+                                   colors = JasminGrad)
                             )
                         )
                     }
