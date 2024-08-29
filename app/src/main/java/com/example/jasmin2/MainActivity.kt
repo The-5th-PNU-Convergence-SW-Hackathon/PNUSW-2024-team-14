@@ -18,7 +18,9 @@ import com.example.jasmin2.ui.theme.MyDetailScreen
 
 import com.example.jasmin2.ui.theme.MyScroll
 import com.example.jasmin2.ui.theme.MypageScreen
+import com.example.jasmin2.ui.theme.NotificationTestScreen
 import com.example.jasmin2.ui.theme.StartScreen
+import com.example.jasmin2.ui.theme.showNotification
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +42,7 @@ fun MyAppContentPreview() {
 @Composable
 fun NavGraph(navController: NavController) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "start") {
+    NavHost(navController = navController, startDestination = "notitest") {
         composable("start") { StartScreen(navController) }
         composable("my-page") { MypageScreen() }
         composable("explain1"){Explain1(navController)}
@@ -50,5 +52,7 @@ fun NavGraph(navController: NavController) {
         composable("scroll"){ MyScroll(navController)}
         composable("detail"){ MyDetailScreen()}
         composable("close"){CloseScreen()}
+        composable("notitest"){NotificationTestScreen()}
+
     }
 }
