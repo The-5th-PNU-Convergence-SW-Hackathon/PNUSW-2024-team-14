@@ -30,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -52,7 +53,7 @@ import java.time.format.TextStyle
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MyA() {
+fun ReportScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -97,16 +98,19 @@ fun MyA() {
                     }
 
                 },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color(0xFFF3F5F7) // TopAppBar 배경 색상을 동일하게 설정
+                )
             )
         }
     ) {
-        ReForm()
+        ReportForm()
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReForm() {
+fun ReportForm() {
     var bankName by remember { mutableStateOf(TextFieldValue("")) }
     var accountNumber by remember { mutableStateOf(TextFieldValue("")) }
     var accountHolder by remember { mutableStateOf(TextFieldValue("")) }
@@ -228,6 +232,6 @@ fun ReForm() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefauPreview() {
-    MyA()
+fun ReportScreenPreview() {
+    ReportScreen()
 }
