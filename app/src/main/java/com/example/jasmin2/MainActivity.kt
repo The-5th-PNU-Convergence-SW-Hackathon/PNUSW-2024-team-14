@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jasmin2.ui.theme.CloseScreen
 import com.example.jasmin2.ui.theme.Explain1
 import com.example.jasmin2.ui.theme.GymInfoScreen
 import com.example.jasmin2.ui.theme.LoginScreen
@@ -48,5 +49,6 @@ fun NavGraph(navController: NavController) {
         composable("login"){ LoginScreen(navController)}
         composable("scroll"){ MyScroll(navController)}
         composable("detail"){ MyDetailScreen()}
+        composable("close"){CloseScreen()}
     }
 }

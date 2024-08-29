@@ -44,7 +44,7 @@ fun CloseScreen() {
             .fillMaxSize()
             .padding(16.dp)
             .background(Color(0xFFF3F5F7)),
-        verticalArrangement = Arrangement.Center,
+
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -66,13 +66,18 @@ fun CloseScreen() {
         RefundInfo()
 
         Spacer(modifier = Modifier.height(60.dp))
-
+        Spacer(modifier = Modifier.weight(1f))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp)
+        ){
         Button(
             onClick = {
 
             },
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+                .align(Alignment.Center)
                 .offset(y = (-25).dp)
                 .padding(bottom = 16.dp)
                 .width(300.dp)  // 버튼의 가로 길이
@@ -102,7 +107,7 @@ fun CloseScreen() {
                 )
             }
         )
-    }
+    }}
 }
 
 @Composable
