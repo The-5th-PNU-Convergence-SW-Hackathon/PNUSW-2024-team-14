@@ -1,6 +1,7 @@
 package com.example.jasmin2.ui.theme
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -13,24 +14,41 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 class NotificationTestActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // 인텐트 확인
+        val navigateToClose = intent?.getBooleanExtra("navigateToClose", false) ?: false
+
         setContent {
-            NotificationTestScreen()
+            navController = rememberNavController()
+
+            if (navigateToClose) {
+                // 인텐트에 따라 바로 "close" 화면으로 네비게이션
+                navController.navigate("close")
+            } else {
+                // 기본 화면 표시
+                NotificationTestScreen(navController, intent)
+            }
         }
     }
 
-    // onRequestPermissionsResult 메서드 정의를 하나로 통일합니다.
+    // 권한 요청 결과 처리
     override fun onRequestPermissionsResult(
         requestCode: Int,
-        permissions: Array<String>, // Array<String>으로 정의
+        permissions: Array<String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -46,8 +64,19 @@ class NotificationTestActivity : ComponentActivity() {
 }
 
 @Composable
-fun NotificationTestScreen() {
+fun NotificationTestScreen(navController: NavHostController, intent: Intent?) {
     val context = LocalContext.current
+
+    val currentIntent = rememberUpdatedState(intent)
+
+    // 인텐트가 변경될 때마다 네비게이션 트리거
+    LaunchedEffect(currentIntent.value) {
+        currentIntent.value?.let {
+            if (it.getBooleanExtra("navigateToClose", false)) {
+                navController.navigate("close")
+            }
+        }
+    }
 
     Column(modifier = Modifier.padding(16.dp)) {
         Button(onClick = {

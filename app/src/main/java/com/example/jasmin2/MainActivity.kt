@@ -1,6 +1,7 @@
 package com.example.jasmin2
 
 import Explain2
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,22 +26,27 @@ import com.example.jasmin2.ui.theme.showNotification
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
-            val navController = rememberNavController()
-            NavGraph(navController = navController)
+            val navController = rememberNavController() // NavHostController를 가져옴
+            NavGraph(navController = navController, initialIntent = intent)
         }
     }
 }
+
+
+
 
 @Preview(showBackground = true)
 @Composable
 fun MyAppContentPreview() {
     val navController = rememberNavController()
-    NavGraph(navController = navController)
+    NavGraph(navController = navController, initialIntent = null)
 }
 
 @Composable
-fun NavGraph(navController: NavController) {
+fun NavGraph(navController: NavController, initialIntent: Intent?) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "notitest") {
         composable("start") { StartScreen(navController) }
@@ -52,7 +58,10 @@ fun NavGraph(navController: NavController) {
         composable("scroll"){ MyScroll(navController)}
         composable("detail"){ MyDetailScreen()}
         composable("close"){CloseScreen()}
-        composable("notitest"){NotificationTestScreen()}
+        composable("notitest"){
+            NotificationTestScreen(navController, initialIntent)
+        }
+
 
     }
 }
