@@ -63,6 +63,7 @@ fun showNotification(context: Context) {
     val intent = Intent(context, MainActivity::class.java).apply {
         flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         putExtra("navigateToClose", true)// 네비게이션 정보 추가
+        putExtra("showButton", false)
     }
 
     // 플래그 설정

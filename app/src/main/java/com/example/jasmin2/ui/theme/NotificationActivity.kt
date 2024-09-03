@@ -77,30 +77,32 @@ fun NotificationTestScreen(navController: NavHostController, intent: Intent?) {
             }
         }
     }
-
-    Column(modifier = Modifier.padding(16.dp)) {
-        Button(onClick = {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                if (ContextCompat.checkSelfPermission(
-                        context,
-                        Manifest.permission.POST_NOTIFICATIONS
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    ActivityCompat.requestPermissions(
-                        context as ComponentActivity,
-                        arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                        1
-                    )
-                } else {
-                    // 이미 권한이 허용된 경우 즉시 알림을 표시합니다.
-                    showNotificationWithDelay(context)
+    if (intent != null) {
+        if (intent.getBooleanExtra("showButton", true)){
+            Column(modifier = Modifier.padding(16.dp)) {
+                Button(onClick = {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        if (ContextCompat.checkSelfPermission(
+                                context,
+                                Manifest.permission.POST_NOTIFICATIONS
+                            ) != PackageManager.PERMISSION_GRANTED
+                        ) {
+                            ActivityCompat.requestPermissions(
+                                context as ComponentActivity,
+                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                1
+                            )
+                        } else {
+                            // 이미 권한이 허용된 경우 즉시 알림을 표시합니다.
+                            showNotificationWithDelay(context)
+                        }
+                    } else {
+                        // Android 13 이하 버전에서는 권한 없이도 알림을 보낼 수 있습니다.
+                        showNotificationWithDelay(context)
+                    }
+                }) {
+                    Text(text = "Show Notification")
                 }
-            } else {
-                // Android 13 이하 버전에서는 권한 없이도 알림을 보낼 수 있습니다.
-                showNotificationWithDelay(context)
             }
-        }) {
-            Text(text = "Show Notification")
-        }
+        }}
     }
-}
