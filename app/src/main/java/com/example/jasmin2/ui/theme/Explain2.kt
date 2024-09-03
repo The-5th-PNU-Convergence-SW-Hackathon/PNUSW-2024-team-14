@@ -74,7 +74,8 @@ fun Explain2(navController: NavController) {
             text = "안심하고 이용하세요!",
             style = TextStyle(
                 fontSize = 13.sp,
-                fontWeight = FontWeight.ExtraBold
+                fontWeight = FontWeight.ExtraBold,
+                color = Color.Gray
             ),
             modifier = Modifier
                 .align(Alignment.Center)

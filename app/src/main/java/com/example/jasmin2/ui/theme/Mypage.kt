@@ -71,20 +71,20 @@ fun MypageScreen(navController: NavController) {
                 )
                 Text(
                     text = "페이퍼",
-                    fontSize = 14.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.ExtraBold,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .offset(x = (-75).dp, y = (-15).dp)
+                        .offset(x = (-67).dp, y = (-15).dp)
                 )
 
                 Text(
                     text = "paper123@naver.com",
-                    fontSize = 9.sp,
+                    fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .offset(x = (-49).dp, y = 2.dp),
+                        .offset(x = (-25).dp, y = 6.dp),
                     style = TextStyle(color = Color.Gray)
                 )
             }
@@ -95,7 +95,7 @@ fun MypageScreen(navController: NavController) {
             ) {
                 Text(
                     text = "포인트",
-                    fontSize = 10.sp,
+                    fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterStart)
@@ -104,7 +104,7 @@ fun MypageScreen(navController: NavController) {
                 )
                 Text(
                     text = "쿠폰",
-                    fontSize = 10.sp,
+                    fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.Center)
@@ -113,7 +113,7 @@ fun MypageScreen(navController: NavController) {
                 )
                 Text(
                     text = "찜",
-                    fontSize = 10.sp,
+                    fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
@@ -128,27 +128,27 @@ fun MypageScreen(navController: NavController) {
             ) {
                 Text(
                     text = "2000p",
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterStart)
-                        .offset(x = 16.dp, y = (-15).dp),
+                        .offset(x = 16.dp, y = (-10).dp),
                 )
                 Text(
                     text = "3개",
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .offset(x = 80.dp, y = (-15).dp),
+                        .offset(x = 80.dp, y = (-10).dp),
                 )
                 Text(
                     text = "찜",
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
-                        .offset(x = (-50).dp, y = (-15).dp),
+                        .offset(x = (-50).dp, y = (-10).dp),
                 )
             }
         }
@@ -157,7 +157,7 @@ fun MypageScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(190.dp)
+                .height(220.dp)
                 .background(color = Color(0xFFF3F5F7))
         ) {
             // 둥근 모서리를 가진 Button으로 텍스트 감싸기
@@ -223,6 +223,7 @@ fun MypageNavItem(title: String) {
         Text(
             text = title,
             fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
             modifier = Modifier
                 .align(Alignment.CenterStart)
                 .offset(x = 16.dp)
