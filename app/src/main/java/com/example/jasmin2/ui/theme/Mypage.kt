@@ -5,8 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,10 +23,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
 
 @Composable
-fun MypageScreen() {
+fun MypageScreen(navController: NavController) {
     //topbar로 수정할려면 scaffold로 리팩토링
     Column(
         verticalArrangement = Arrangement.Top, //top에서부터 수직으로 정렬
@@ -153,9 +158,49 @@ fun MypageScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(190.dp)
-                .background(color = Color(0xFFE4E4E4))
-        ) {}
+                .background(color = Color(0xFFF3F5F7))
+        ) {
+            // 둥근 모서리를 가진 Button으로 텍스트 감싸기
+            Button(
+                onClick = {
+                    navController.navigate("report")
+                },
+                shape = RoundedCornerShape(16.dp), // 둥근 모서리 설정
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White, // 버튼 배경색 설정
+                    contentColor = Color.Black // 버튼 텍스트 색상 설정
+                ),
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+                    .width(500.dp)
+                    .height(400.dp)
+                    .padding(25.dp) // 주변 여백
 
+            ) {
+                Column(modifier = Modifier
+                    .padding(end=70.dp, top = 10.dp)) {
+                    Text(
+                        text = "소비자 신고 센터",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp
+                    )
+                    Text(
+                        text = "폐업한 것 같은 헬스장을 신고해주세요!",
+                        fontWeight = FontWeight.Bold,
+                        style = TextStyle(color = Color.Gray),
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(top = 4.dp) // 텍스트 간 간격을 위해 padding 추가
+                    )
+                    Text(
+                        text = "즉시 확인 후 연락드리겠습니다",
+                        fontWeight = FontWeight.Bold,
+                        style = TextStyle(color = Color.Gray),
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+            }
+        }
         // 공통된 박스 항목을 위한 재사용 가능한 컴포저블 호출
         MypageNavItem(title = "결제내역")
         MypageNavItem(title = "회원권")
@@ -196,5 +241,5 @@ fun MypageNavItem(title: String) {
 @Preview(showBackground = true)
 @Composable
 private fun MypagePreview() {
-    MypageScreen()
+    MypageScreen(navController = rememberNavController())
 }

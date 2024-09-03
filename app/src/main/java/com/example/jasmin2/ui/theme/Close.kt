@@ -35,10 +35,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
 
 @Composable
-fun CloseScreen() {
+fun CloseScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -74,7 +76,7 @@ fun CloseScreen() {
         ){
         Button(
             onClick = {
-
+                navController.navigate("refund")
             },
             modifier = Modifier
                 .align(Alignment.Center)
@@ -195,6 +197,7 @@ fun RefundInfo() {
                 colors = JasminGrad)),
         modifier = Modifier
             .align(Alignment.CenterEnd)
+            .offset(x=(-25).dp)
     )}
 
     Spacer(modifier = Modifier.height(130.dp))
@@ -253,6 +256,6 @@ Box(
 @Composable
 fun ClosePreview() {
 
-        CloseScreen()
+        CloseScreen(navController = rememberNavController())
 
 }

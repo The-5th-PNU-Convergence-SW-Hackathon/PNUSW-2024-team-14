@@ -20,6 +20,10 @@ import com.example.jasmin2.ui.theme.MyDetailScreen
 import com.example.jasmin2.ui.theme.MyScroll
 import com.example.jasmin2.ui.theme.MypageScreen
 import com.example.jasmin2.ui.theme.NotificationTestScreen
+import com.example.jasmin2.ui.theme.RefundCompleteScreen
+import com.example.jasmin2.ui.theme.RefundScreen
+import com.example.jasmin2.ui.theme.ReportCompleteScreen
+import com.example.jasmin2.ui.theme.ReportScreen
 import com.example.jasmin2.ui.theme.StartScreen
 import com.example.jasmin2.ui.theme.showNotification
 
@@ -50,18 +54,21 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "notitest") {
         composable("start") { StartScreen(navController) }
-        composable("my-page") { MypageScreen() }
+        composable("mypage") { MypageScreen(navController) }
         composable("explain1"){Explain1(navController)}
         composable("explain2"){Explain2(navController)}
         composable("home"){GymInfoScreen(navController)}
         composable("login"){ LoginScreen(navController)}
         composable("scroll"){ MyScroll(navController)}
         composable("detail"){ MyDetailScreen()}
-        composable("close"){CloseScreen()}
+        composable("close"){CloseScreen(navController)}
         composable("notitest"){
             NotificationTestScreen(navController, initialIntent)
         }
-
+        composable("refund"){ RefundScreen(navController)}
+        composable("refundcomplete"){ RefundCompleteScreen(navController)}
+        composable("report"){ ReportScreen(navController)}
+        composable("reportcomplete"){ ReportCompleteScreen(navController)}
 
     }
 }

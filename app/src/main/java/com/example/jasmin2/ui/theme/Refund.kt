@@ -47,12 +47,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import java.time.format.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RefundScreen() {
+fun RefundScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -72,7 +74,7 @@ fun RefundScreen() {
 
                         Button(
                             onClick = {
-                                // 뒤로가기 버튼 클릭 시 동작
+                                navController.navigate("close")
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color.Transparent, // 버튼의 기본 배경색을 투명하게 설정
@@ -102,13 +104,13 @@ fun RefundScreen() {
             )
         }
     ) {
-        RefundForm()
+        RefundForm(navController)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RefundForm() {
+fun RefundForm(navController:NavController) {
     var bankName by remember { mutableStateOf(TextFieldValue("")) }
     var accountNumber by remember { mutableStateOf(TextFieldValue("")) }
     var accountHolder by remember { mutableStateOf(TextFieldValue("")) }
@@ -203,7 +205,7 @@ fun RefundForm() {
         ) {
             Button(
                 onClick = {
-
+                    navController.navigate("refundcomplete")
                 },
                 modifier = Modifier
                     .align(Alignment.Center)
@@ -243,5 +245,5 @@ fun RefundForm() {
 @Preview(showBackground = true)
 @Composable
 fun RefundScreenPreview() {
-    RefundScreen()
+    RefundScreen(navController = rememberNavController())
 }

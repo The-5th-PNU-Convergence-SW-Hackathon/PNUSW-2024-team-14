@@ -51,13 +51,15 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
 import java.time.format.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RefundCompleteScreen() {
+fun RefundCompleteScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -75,13 +77,13 @@ fun RefundCompleteScreen() {
             )
         }
     ) {
-        RefundCompleteForm()
+        RefundCompleteForm(navController)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RefundCompleteForm() {
+fun RefundCompleteForm(navController: NavController) {
     var bankName by remember { mutableStateOf(TextFieldValue("")) }
     var accountNumber by remember { mutableStateOf(TextFieldValue("")) }
     var accountHolder by remember { mutableStateOf(TextFieldValue("")) }
@@ -140,7 +142,7 @@ fun RefundCompleteForm() {
         ) {
             Button(
                 onClick = {
-
+                    navController.navigate("home")
                 },
                 modifier = Modifier
                     .align(Alignment.Center)
@@ -180,5 +182,5 @@ fun RefundCompleteForm() {
 @Preview(showBackground = true)
 @Composable
 fun RefundCompletePreview() {
-    RefundCompleteScreen()
+    RefundCompleteScreen(navController = rememberNavController())
 }

@@ -48,12 +48,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import java.time.format.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ReportScreen() {
+fun ReportScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -74,7 +76,7 @@ fun ReportScreen() {
 
                         Button(
                             onClick = {
-                                // 뒤로가기 버튼 클릭 시 동작
+                                navController.navigate("mypage")// 뒤로가기 버튼 클릭 시 동작
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color.Transparent, // 버튼의 기본 배경색을 투명하게 설정
@@ -104,13 +106,13 @@ fun ReportScreen() {
             )
         }
     ) {
-        ReportForm()
+        ReportForm(navController)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReportForm() {
+fun ReportForm(navController: NavController) {
     var bankName by remember { mutableStateOf(TextFieldValue("")) }
     var accountNumber by remember { mutableStateOf(TextFieldValue("")) }
     var accountHolder by remember { mutableStateOf(TextFieldValue("")) }
@@ -193,7 +195,7 @@ fun ReportForm() {
         ) {
             Button(
                 onClick = {
-
+                    navController.navigate("reportcomplete")
                 },
                 modifier = Modifier
                     .align(Alignment.Center)
@@ -233,5 +235,5 @@ fun ReportForm() {
 @Preview(showBackground = true)
 @Composable
 fun ReportScreenPreview() {
-    ReportScreen()
+    ReportScreen(navController = rememberNavController())
 }

@@ -14,6 +14,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Button
@@ -60,7 +61,9 @@ fun GymInfoScreen(navController: NavController) {
         TopSearchBar(
             query = query,
             onQueryChanged = { newQuery -> query = newQuery },
-            onSearch = { searchQuery -> /* 검색 로직 처리 */ })
+            onSearch = { searchQuery -> /* 검색 로직 처리 */ },
+            navController = navController)
+
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -73,10 +76,10 @@ fun GymInfoScreen(navController: NavController) {
 fun TopSearchBar(
     query: String,
     onQueryChanged: (String) -> Unit,
-    onSearch: (String) -> Unit
+    onSearch: (String) -> Unit,
+    navController: NavController
 ) {
     Box(
-
         modifier = Modifier
             .fillMaxWidth()
             .clip(
@@ -95,58 +98,79 @@ fun TopSearchBar(
                 )
             )
             .padding(15.dp)
-
-
     ) {
-        Text(
-            text = "  부산 금정구 장전동",
-            color = Color.White,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            // 검색바 텍스트
+            Text(
+                text = "부산 금정구 장전동",
+                color = Color.White,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f)
+            )
 
-        Spacer(modifier = Modifier.height(8.dp))
+            // 마이페이지 아이콘
+            IconButton(
+                onClick = {
 
-                Row(
-                    modifier = Modifier
-                        .padding(5.dp) // 패딩을 Row에 설정합니다.
-                ) {
-                    TextField(
+                    navController.navigate("mypage")
+                },
+                modifier = Modifier
+                    .size(30.dp)
+                    .padding(end = 8.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Person, // 원하는 아이콘으로 대체 가능
+                    contentDescription = "My Page",
+                    tint = Color.White
 
-                        value = query,
-                        onValueChange = { newQuery ->
-                            onQueryChanged(newQuery)
-                        },
-                        trailingIcon = {
-                            IconButton(onClick = { onSearch(query) }) {
-                                Icon(
-                                    imageVector = Icons.Default.Search,
-                                    contentDescription = "Search Icon"
 
-                                )
-                            }
-                        },
-                        placeholder = {
-                            Text(
-                                text = "어떤 헬스장을 찾으시나요?",
-                                fontSize = 15.sp)
-                        },
-                        modifier = Modifier
-                            .width(350.dp)
-                            .padding(start = 5.dp, top = 35.dp, end = 0.dp, bottom = 16.dp)
-                            .heightIn(20.dp),
-
-                        colors = TextFieldDefaults.colors(
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent,
-                            unfocusedContainerColor = Color.White // focusedContainerColor 및 unfocusedContainerColor 대신 사용
-                        ),
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                }
+                )
             }
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Row(
+            modifier = Modifier
+                .padding(5.dp) // 패딩을 Row에 설정합니다.
+        ) {
+            TextField(
+                value = query,
+                onValueChange = { newQuery ->
+                    onQueryChanged(newQuery)
+                },
+                trailingIcon = {
+                    IconButton(onClick = { onSearch(query) }) {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "Search Icon"
+                        )
+                    }
+                },
+                placeholder = {
+                    Text(
+                        text = "어떤 헬스장을 찾으시나요?",
+                        fontSize = 15.sp
+                    )
+                },
+                modifier = Modifier
+                    .width(350.dp)
+                    .padding(start = 5.dp, top = 35.dp, end = 0.dp, bottom = 16.dp)
+                    .heightIn(20.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    unfocusedContainerColor = Color.White // focusedContainerColor 및 unfocusedContainerColor 대신 사용
+                ),
+                shape = RoundedCornerShape(16.dp)
+            )
+        }
+    }
+}
 
 
 @Composable
@@ -214,7 +238,7 @@ fun GymInfoCard(navController:NavController) {
                     modifier = Modifier
                         .size(48.dp)
                         .align(Alignment.CenterEnd)
-                        .offset(x=(8).dp)
+                        .offset(x = (8).dp)
                 )
 
             }
@@ -236,7 +260,7 @@ fun GymInfoCard(navController:NavController) {
                     modifier = Modifier
                         .size(48.dp)
                         .align(Alignment.CenterStart)
-                        .offset(x=(-8).dp)
+                        .offset(x = (-8).dp)
                 )
 
             }
