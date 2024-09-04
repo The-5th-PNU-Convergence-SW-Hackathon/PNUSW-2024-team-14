@@ -1,5 +1,6 @@
 package com.example.jasmin2.ui.theme
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -47,6 +48,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.jasmin2.MapActivity
 import com.example.jasmin2.R
 
 @Composable
@@ -357,6 +359,9 @@ fun GymInfoCard(navController:NavController) {
     ){
         Button(
             onClick = {
+                val context = navController.context
+                val intent = Intent(context, MapActivity::class.java)
+                context.startActivity(intent)
                       //맵으로 네비게이션
             },
             colors = ButtonDefaults.buttonColors(

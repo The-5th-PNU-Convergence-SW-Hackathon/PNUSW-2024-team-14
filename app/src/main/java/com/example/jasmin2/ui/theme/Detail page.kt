@@ -27,6 +27,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -43,25 +45,35 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.rememberAsyncImagePainter
+import com.example.jasmin2.FitnessList
+import com.example.jasmin2.MainViewModel
 import com.example.jasmin2.R
 
 @Composable
-fun MyDetailScreen(){
+fun MyDetailScreen(fitnessId: Long, fitness: FitnessList){
+    val fitnessViewModel: MainViewModel = viewModel()
+    val fitnessDetailState by fitnessViewModel.fitnessDetail
+
+    LaunchedEffect(fitnessId) {
+        fitnessViewModel.fetchFitnessDetail(fitnessId)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()) // 세로 스크롤 추가
     ) {
-        DetailImageCard()
-        DetailGymInfo()
+        DetailImageCard(fitness)
+        DetailGymInfo(fitness)
         Spacer(modifier = Modifier.height(15.dp))
-        MembershipScreen()
+        MembershipScreen(fitness)
         Spacer(modifier = Modifier.height(20.dp))
     }
 }
 
 @Composable
-fun DetailImageCard(){
+fun DetailImageCard(fitness: FitnessList){
     val isFavorite = remember{
         mutableStateOf(false)
     }
@@ -75,7 +87,7 @@ fun DetailImageCard(){
             ,
         ){
             //업체 이미지
-            Image(painter = painterResource(id = R.drawable.gym2),
+            Image(painter = rememberAsyncImagePainter(fitness.imgtegst),
                 contentDescription = "헬스장 이미지",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -94,13 +106,13 @@ fun DetailImageCard(){
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = "워너짐 부산대점",
+                        text = fitness.name,
                         color = Color.White,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "부산광역시 금정구 장전동 420-47 지하1층",
+                        text = fitness.address,
                         color = Color.White,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold
@@ -215,7 +227,7 @@ fun DetailGymInfo(){
  */
 
 @Composable
-fun DetailGymInfo(){
+fun DetailGymInfo(fitness: FitnessList){
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -244,7 +256,7 @@ fun DetailGymInfo(){
                         tint = Color(0xFFFFD700), // 진한 노란색
                     )
                     Text(
-                        text = " 4.9",
+                        text = " ${fitness.rating}",
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Gray,
@@ -280,7 +292,7 @@ fun DetailGymInfo(){
                 )
                 Spacer(modifier = Modifier.height(15.dp))
                 Text(
-                    text = "24:00에 영업 종료",
+                    text = fitness.weekdaytime,
                     color = Color.Gray
                 )
             }
@@ -370,17 +382,19 @@ fun MembershipCard(title: String, price: String){
 }
 
 @Composable
-fun MembershipScreen() {
+fun MembershipScreen(fitness: FitnessList) {
     Column {
-        MembershipCard(title = "1개월 회원권", price = "35000원~/월")
+        MembershipCard(title = "1개월 회원권", price = "${fitness.monthprice}원~/월")
         Spacer(modifier = Modifier.height(5.dp))
-        MembershipCard(title = "3개월 회원권", price = "35000원~/월")
+        MembershipCard(title = "3개월 회원권", price = "${fitness.threeprice}원~/월")
+        Spacer(modifier = Modifier.height(5.dp))
+        MembershipCard(title = "6개월 회원권", price = "${fitness.sixprice}원~/월")
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun MyAppContentPreview() {
-    //MyScroll()
-    MyDetailScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun MyAppContentPreview() {
+//    //MyScroll()
+//    MyDetailScreen()
+//}

@@ -7,10 +7,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.jasmin2.ui.theme.CloseScreen
 import com.example.jasmin2.ui.theme.Explain1
 import com.example.jasmin2.ui.theme.GymInfoScreen
@@ -20,6 +23,7 @@ import com.example.jasmin2.ui.theme.MyDetailScreen
 import com.example.jasmin2.ui.theme.MyScroll
 import com.example.jasmin2.ui.theme.MypageScreen
 import com.example.jasmin2.ui.theme.NotificationTestScreen
+import com.example.jasmin2.ui.theme.PayScreen
 import com.example.jasmin2.ui.theme.RefundCompleteScreen
 import com.example.jasmin2.ui.theme.RefundScreen
 import com.example.jasmin2.ui.theme.ReportCompleteScreen
@@ -60,7 +64,22 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
         composable("home"){GymInfoScreen(navController)}
         composable("login"){ LoginScreen(navController)}
         composable("scroll"){ MyScroll(navController)}
-        composable("detail"){ MyDetailScreen()}
+
+        composable(
+            "detail/{fitnessId}",
+            arguments = listOf(navArgument("fitnessId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val fitnessId = backStackEntry.arguments?.getLong("fitnessId")
+            val fitnessViewModel: MainViewModel = viewModel()
+
+            fitnessId?.let { id ->
+                val fitness = fitnessViewModel.getFitnessById(id)
+                fitness?.let {
+                    MyDetailScreen(fitnessId = id, fitness = it) // id와 fitness 객체를 전달
+                }
+            }
+        }
+
         composable("close"){CloseScreen(navController)}
         composable("notitest"){
             NotificationTestScreen(navController, initialIntent)
@@ -69,6 +88,7 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
         composable("refundcomplete"){ RefundCompleteScreen(navController)}
         composable("report"){ ReportScreen(navController)}
         composable("reportcomplete"){ ReportCompleteScreen(navController)}
+        composable("pay"){ PayScreen(navController)}
 
     }
 }

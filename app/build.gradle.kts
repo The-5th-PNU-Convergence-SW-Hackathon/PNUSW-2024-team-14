@@ -1,6 +1,13 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+}
+
+val properties = Properties().apply {
+    load(FileInputStream(rootProject.file("local.properties")))
 }
 
 android {
@@ -17,6 +24,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+        buildConfigField("String", "KAKAO_MAP_KEY", "{액세스 키}")
+
+
+        ndk {
+            abiFilters.add("arm64-v8a")
+            abiFilters.add("armeabi-v7a")
+            abiFilters.add("x86")
+            abiFilters.add("x86_64")
         }
     }
 
@@ -38,6 +54,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -50,6 +67,19 @@ android {
 }
 
 dependencies {
+
+    //Compose Viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    //Network calls
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    //Json to Kotlin object mapping
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //Image loading
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    //kakao map
+    implementation ("com.kakao.maps.open:android:2.11.9")
+    //appcompat
+    implementation ("androidx.appcompat:appcompat:1.7.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

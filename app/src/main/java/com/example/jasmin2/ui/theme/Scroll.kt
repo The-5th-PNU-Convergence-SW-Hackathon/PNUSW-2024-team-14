@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,6 +32,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -44,8 +46,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.rememberAsyncImagePainter
+import com.example.jasmin2.FitnessList
+import com.example.jasmin2.MainViewModel
 import com.example.jasmin2.R
 
 data class Gym(val name: String)
@@ -75,39 +81,62 @@ fun MyScroll(navController: NavController) {
 
 @Composable
 fun MyAppContent(navController: NavController) {
-    val gyms = List(10) { index -> Gym("헬스장 $index") }
-    LazyColumn(
-        modifier = Modifier
-            .background(color = Color.White)
-            .fillMaxSize(),
-        contentPadding = PaddingValues(5.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        // chunked : 리스트로 받은 데이터 작은 데이터 2개로 나누기. 나눠서 두 열에 각각 넣음
-        items(gyms.chunked(2)) { pair ->
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                // Box 2개 Row로 배치. 이후 각각의 Row에 각각의 chunked list가 들어가도록 함
-                pair.forEach { gym ->
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(320.dp),
-                        contentAlignment = Alignment.TopCenter
-                    ) {
-                        GymInfo(navController)
-                    }
-                }
-                // 나누어진 pair가 홀수개라 하나만 남는경우 empty하게 출력
-                if (pair.size < 2) {
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(320.dp)
-                    ){
-                        GymInfo(navController)
+
+    val fitnessViewModel: MainViewModel = viewModel()
+    val viewstate by fitnessViewModel.categorieState
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        when {
+            // 데이터 로딩 중일 때 로딩 인디케이터를 표시합니다.
+            viewstate.loading -> {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
+
+            // 에러가 발생한 경우 에러 메시지를 표시합니다.
+            viewstate.error != null -> {
+                Text(
+                    text = "ERROR OCCURRED: ${viewstate.error}",
+                    color = Color.Red,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+
+            else -> {
+                LazyColumn(
+                    modifier = Modifier
+                        .background(color = Color.White)
+                        .fillMaxSize(),
+                    contentPadding = PaddingValues(5.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    // chunked : 리스트로 받은 데이터 작은 데이터 2개로 나누기. 나눠서 두 열에 각각 넣음
+                    items(viewstate.list.chunked(2)) { pair ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            // Box 2개 Row로 배치. 이후 각각의 Row에 각각의 chunked list가 들어가도록 함
+                            pair.forEach { fitness ->
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .height(320.dp),
+                                    contentAlignment = Alignment.TopCenter
+                                ) {
+                                    GymInfo(navController, fitness)
+                                }
+                            }
+                            // 나누어진 pair가 홀수개라 하나만 남는경우 empty하게 출력
+                            if (pair.size < 2) {
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .height(320.dp)
+                                ) {
+
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -117,16 +146,17 @@ fun MyAppContent(navController: NavController) {
 
 //헬스장 정보 한칸
 @Composable
-fun GymInfo(navController: NavController){
+fun GymInfo(navController: NavController, fitness: FitnessList,
+            modifier: Modifier = Modifier){
     Column {
-        ImageCard(navController)
+        ImageCard(navController, fitness)
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(40.dp)
             .padding(5.dp)
         ){
             Text(
-                text = "ABC 헬스장",
+                text = fitness.name,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -137,7 +167,7 @@ fun GymInfo(navController: NavController){
             .padding(horizontal = 5.dp)
         ){
             Text(
-                text = "부산 금정구 장전동",
+                text = fitness.address,
                 fontSize = 10.sp,
                 color = Color.Gray
             )
@@ -157,7 +187,7 @@ fun GymInfo(navController: NavController){
                     tint = Color(0xFFFFD700), // 진한 노란색
                 )
                 Text(
-                    text = " 4.2",
+                    text = fitness.rating.toString(),
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -171,7 +201,7 @@ fun GymInfo(navController: NavController){
         )
         {
             Text(
-                text = "3,5000원~/월",
+                text = "${fitness.monthprice}원~/월",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
             )
@@ -183,7 +213,7 @@ fun GymInfo(navController: NavController){
 
 // 이미지와 아이콘
 @Composable
-fun ImageCard(navController: NavController){
+fun ImageCard(navController: NavController, fitness: FitnessList){
     val isFavorite = remember{
         mutableStateOf(false)
     }
@@ -197,14 +227,14 @@ fun ImageCard(navController: NavController){
                 .fillMaxWidth(),
 
             ){
-            Image(painter = painterResource(id = R.drawable.download),
+            Image(painter = rememberAsyncImagePainter(fitness.imgtegst),
                 contentDescription = "헬스장 이미지",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxSize()
                     .clickable {
                         // 이미지 클릭 시 네비게이션 실행
-                        navController.navigate("detail")
+                        navController.navigate("detail/${fitness.id}")
                     }
             )
             //아이콘
