@@ -39,7 +39,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -53,7 +55,7 @@ data class Gym(val name: String)
 fun MyScroll(navController: NavController) {
     Scaffold(
         topBar = {
-            TopBar()
+            TopBar(navController)
         },
         bottomBar = {
             BottomBar()
@@ -233,13 +235,19 @@ fun ImageCard(navController: NavController){
 // TopBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(){
+fun TopBar(navController: NavController){
     CenterAlignedTopAppBar(
         title = {
             Row(
                 modifier = Modifier.height(30.dp),
             ) {
-                Text("부산 금정구 장전동")
+                Text(
+                    text = "부산 금정구 장전동",
+                    style = TextStyle(
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold)
+                )
+
                 ArrowDownIcon()
             }
         },
@@ -247,7 +255,7 @@ fun TopBar(){
             AlarmIcon()
         },
         navigationIcon = {
-            UpButton()
+            UpButton(navController)
         }
     )
 }
@@ -264,11 +272,12 @@ fun BottomBar(){
 fun ArrowDownIcon(){
     IconButton(
         onClick = { /*TODO*/ },
-        modifier = Modifier.size(30.dp)
+        modifier = Modifier.size(35.dp)
 
     ) {
         Icon(imageVector = Icons.Default.KeyboardArrowDown,
             contentDescription = "arrawdown",
+            modifier = Modifier.size(35.dp)
         )
     }
 }
@@ -290,9 +299,11 @@ fun AlarmIcon(){
 
 // 뒤로가기 버튼
 @Composable
-fun UpButton(){
+fun UpButton(navController: NavController){
     IconButton(
-        onClick = { /*TODO*/ },
+        onClick = {
+            navController.navigate("home")
+        },
         modifier = Modifier.size(50.dp)
 
     ) {
@@ -302,5 +313,11 @@ fun UpButton(){
 
             )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ScrollPreview() {
+    MyScroll(navController = rememberNavController())
 }
 
