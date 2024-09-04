@@ -20,6 +20,7 @@ import com.example.jasmin2.ui.theme.MyDetailScreen
 import com.example.jasmin2.ui.theme.MyScroll
 import com.example.jasmin2.ui.theme.MypageScreen
 import com.example.jasmin2.ui.theme.NotificationTestScreen
+import com.example.jasmin2.ui.theme.PayScreen
 import com.example.jasmin2.ui.theme.RefundCompleteScreen
 import com.example.jasmin2.ui.theme.RefundScreen
 import com.example.jasmin2.ui.theme.ReportCompleteScreen
@@ -69,6 +70,7 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
         composable("refundcomplete"){ RefundCompleteScreen(navController)}
         composable("report"){ ReportScreen(navController)}
         composable("reportcomplete"){ ReportCompleteScreen(navController)}
+        composable("pay"){ PayScreen(navController)}
 
     }
 }
