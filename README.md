@@ -247,14 +247,14 @@
 |S8|회원가입 : 비밀번호| 비밀번호 입력 </br> 중복 검사 |
 |S8|회원가입| 회원가입 |
 #### II. 검색
- <img src = "https://github.com/user-attachments/assets/c471f69f-ca1c-41d4-a698-fd2acb36a6d5" width = "600">
+ <img src = "https://github.com/user-attachments/assets/c471f69f-ca1c-41d4-a698-fd2acb36a6d5" width = "200">
  
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|검색| 연관 검색어 검색 |
 
 #### III. 스크롤 목록 배너
- <img src = "https://github.com/user-attachments/assets/3fd0ab09-cc43-4ac1-a95c-85625ccf9a2e" width = "600">
+ <img src = "https://github.com/user-attachments/assets/3fd0ab09-cc43-4ac1-a95c-85625ccf9a2e" width = "200">
 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
@@ -262,7 +262,7 @@
 |S2|목록 아이템| 디테일 페이지로 이동 |
 
 #### IV. 디테일 페이지
- <img src = "https://github.com/user-attachments/assets/c47f7eb1-25fa-4ab0-abc8-fbf382c576bc" width = "600">
+ <img src = "https://github.com/user-attachments/assets/c47f7eb1-25fa-4ab0-abc8-fbf382c576bc" width = "200">
 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
@@ -270,7 +270,7 @@
 |S2|리뷰 보기| 리뷰 페이지 이동 |
 |S3|회원권| 회원권 구매 </br> 결제 페이지로 이동|
 #### V. 환불 페이지
- <img src = "https://github.com/user-attachments/assets/e9f6a1e0-ce3c-48c3-b452-37d656dc26d8" width = "600">
+ <img src = "https://github.com/user-attachments/assets/e9f6a1e0-ce3c-48c3-b452-37d656dc26d8" width = "400">
 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
@@ -280,7 +280,7 @@
 |S4|승인| 멀티시그 환불 승인 </br> 완료 페이지로 이동|
 |S5|확인|완료|
 #### VI. 신고 페이지
- <img src = "https://github.com/user-attachments/assets/fcb3fbed-a38d-4ba5-b3e9-be2eacc4d9c4" width = "600">
+ <img src = "https://github.com/user-attachments/assets/fcb3fbed-a38d-4ba5-b3e9-be2eacc4d9c4" width = "200">
  
 |라벨|이름|상세|
 |:---:|:---:|:---:|
@@ -290,7 +290,7 @@
 |S4|폐업 업장 신고| 신고 접수 |
 
 #### VII. 결제 페이지
-<img src = "https://github.com/user-attachments/assets/3036d155-af33-4241-9e2f-694829468edc" width = "600">
+<img src = "https://github.com/user-attachments/assets/3036d155-af33-4241-9e2f-694829468edc" width = "200">
 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
@@ -298,14 +298,14 @@
 |S2|약관 동의| 약관 동의 |
 
 #### VIII. 마이 페이지
-<img src = "https://github.com/user-attachments/assets/38724d33-9451-4dac-95f6-607742f62582" width = "600">
+<img src = "https://github.com/user-attachments/assets/38724d33-9451-4dac-95f6-607742f62582" width = "200">
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|소비자 전자 계좌 주소| 앱에서 발행한 소비자 전자 계좌 주소 |
 |S2|소비자 신고 센터| 클릭 시 신고 페이지로 이동  |
 
 #### IX. 홈 페이지
-<img src = "https://github.com/user-attachments/assets/3ce71ecb-3344-4f54-9f9f-fb4865439702" width = "600">
+<img src = "https://github.com/user-attachments/assets/3ce71ecb-3344-4f54-9f9f-fb4865439702" width = "200">
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|내 지역| 내 지역 표시|
