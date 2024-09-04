@@ -314,7 +314,7 @@ https://github.com/user-attachments/assets/70b479ef-851e-430f-9f76-b119e8fe3d84
 <hr>
 
 #### VI. 신고 페이지
- <img src = "https://github.com/user-attachments/assets/fcb3fbed-a38d-4ba5-b3e9-be2eacc4d9c4" width = "200">
+ <img src = "https://github.com/user-attachments/assets/fcb3fbed-a38d-4ba5-b3e9-be2eacc4d9c4" width = "400">
  
 |라벨|이름|상세|
 |:---:|:---:|:---:|
