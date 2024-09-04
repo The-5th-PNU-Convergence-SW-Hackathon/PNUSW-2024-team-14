@@ -230,7 +230,8 @@
 
 ### 3.3. 기능명세서
 #### I. 로그인/회원가입
-![image](https://github.com/user-attachments/assets/75496eee-19c5-407b-a47b-83855729602d)
+
+ <img src = "https://github.com/user-attachments/assets/75496eee-19c5-407b-a47b-83855729602d" width = "200">
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|로그인| 클릭시 로그인 페이지 이동|
