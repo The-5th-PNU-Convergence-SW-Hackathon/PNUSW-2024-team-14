@@ -217,9 +217,11 @@
 ## 3. 개발결과
 ### 3.1. 전체시스템 흐름도
 #### I. 전체 시스템 흐름도
-![image](https://github.com/user-attachments/assets/be3a8300-07d4-4725-903d-6f6929c12123)
+<img src = "https://github.com/user-attachments/assets/be3a8300-07d4-4725-903d-6f6929c12123" width = "600">
+
 #### II. 환불 시스템 흐름도
-![image](https://github.com/user-attachments/assets/9b051e98-d261-4a49-a48f-c3a5a780ee61)
+<img src = "https://github.com/user-attachments/assets/9b051e98-d261-4a49-a48f-c3a5a780ee61" width = "600">
+
 ### 3.2. 기능설명
 ####  I. 홈화면 배너
 #### II. 목록 스크롤
@@ -232,6 +234,7 @@
 #### I. 로그인/회원가입
 
  <img src = "https://github.com/user-attachments/assets/75496eee-19c5-407b-a47b-83855729602d" width = "600">
+ 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|로그인| 클릭시 로그인 페이지 이동|
@@ -244,25 +247,31 @@
 |S8|회원가입 : 비밀번호| 비밀번호 입력 </br> 중복 검사 |
 |S8|회원가입| 회원가입 |
 #### II. 검색
-![image](https://github.com/user-attachments/assets/c471f69f-ca1c-41d4-a698-fd2acb36a6d5)
+ <img src = "https://github.com/user-attachments/assets/c471f69f-ca1c-41d4-a698-fd2acb36a6d5" width = "600">
+ 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|검색| 연관 검색어 검색 |
+
 #### III. 스크롤 목록 배너
-![image](https://github.com/user-attachments/assets/3fd0ab09-cc43-4ac1-a95c-85625ccf9a2e)
+ <img src = "https://github.com/user-attachments/assets/3fd0ab09-cc43-4ac1-a95c-85625ccf9a2e" width = "600">
+
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|검색| 연관 검색어 검색 |
 |S2|목록 아이템| 디테일 페이지로 이동 |
+
 #### IV. 디테일 페이지
-![image](https://github.com/user-attachments/assets/c47f7eb1-25fa-4ab0-abc8-fbf382c576bc)
+ <img src = "https://github.com/user-attachments/assets/c47f7eb1-25fa-4ab0-abc8-fbf382c576bc" width = "600">
+
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|찜하기| 관심 목록 저장 |
 |S2|리뷰 보기| 리뷰 페이지 이동 |
 |S3|회원권| 회원권 구매 </br> 결제 페이지로 이동|
 #### V. 환불 페이지
-![image](https://github.com/user-attachments/assets/e9f6a1e0-ce3c-48c3-b452-37d656dc26d8)
+ <img src = "https://github.com/user-attachments/assets/e9f6a1e0-ce3c-48c3-b452-37d656dc26d8" width = "600">
+
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|폐업 업장 정보| 결제일, 회원권 정보 확인 |
@@ -271,7 +280,8 @@
 |S4|승인| 멀티시그 환불 승인 </br> 완료 페이지로 이동|
 |S5|확인|완료|
 #### VI. 신고 페이지
-![image](https://github.com/user-attachments/assets/fcb3fbed-a38d-4ba5-b3e9-be2eacc4d9c4)
+ <img src = "https://github.com/user-attachments/assets/fcb3fbed-a38d-4ba5-b3e9-be2eacc4d9c4" width = "600">
+ 
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|폐업 업장 지역| 지역 작성 |
@@ -280,21 +290,22 @@
 |S4|폐업 업장 신고| 신고 접수 |
 
 #### VII. 결제 페이지
-![image](https://github.com/user-attachments/assets/3036d155-af33-4241-9e2f-694829468edc)
+<img src = "https://github.com/user-attachments/assets/3036d155-af33-4241-9e2f-694829468edc" width = "600">
+
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|헬스장 전자 계좌 주소| 스마트 컨트랙트를 실행할 판매자 전자 계좌 주소 |
 |S2|약관 동의| 약관 동의 |
 
 #### VIII. 마이 페이지
-![image](https://github.com/user-attachments/assets/38724d33-9451-4dac-95f6-607742f62582)
+<img src = "https://github.com/user-attachments/assets/38724d33-9451-4dac-95f6-607742f62582" width = "600">
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|소비자 전자 계좌 주소| 앱에서 발행한 소비자 전자 계좌 주소 |
 |S2|소비자 신고 센터| 클릭 시 신고 페이지로 이동  |
 
 #### IX. 홈 페이지
-![image](https://github.com/user-attachments/assets/3ce71ecb-3344-4f54-9f9f-fb4865439702)
+<img src = "https://github.com/user-attachments/assets/3ce71ecb-3344-4f54-9f9f-fb4865439702" width = "600">
 |라벨|이름|상세|
 |:---:|:---:|:---:|
 |S1|내 지역| 내 지역 표시|
