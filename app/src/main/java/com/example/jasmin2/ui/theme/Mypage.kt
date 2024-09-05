@@ -79,12 +79,12 @@ fun MypageScreen(navController: NavController) {
                 )
 
                 Text(
-                    text = "paper123@naver.com",
+                    text = "0x23094823405",
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .offset(x = (-25).dp, y = 6.dp),
+                        .offset(x = (-38).dp, y = 6.dp),
                     style = TextStyle(color = Color.Gray)
                 )
             }
