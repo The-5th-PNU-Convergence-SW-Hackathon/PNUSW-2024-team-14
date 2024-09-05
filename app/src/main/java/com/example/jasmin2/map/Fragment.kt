@@ -1,4 +1,4 @@
-package com.example.jasmin2
+package com.example.jasmin2.map
 
 import android.os.Bundle
 import android.view.View

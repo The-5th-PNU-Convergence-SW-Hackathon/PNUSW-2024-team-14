@@ -42,17 +42,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.jasmin2.FitnessList
+import com.example.jasmin2.fitness.FitnessList
 import com.example.jasmin2.MainViewModel
 import com.example.jasmin2.R
 
 @Composable
-fun MyDetailScreen(fitnessId: Long, fitness: FitnessList){
+fun MyDetailScreen(navController: NavController, fitnessId: Long, fitness: FitnessList){
     val fitnessViewModel: MainViewModel = viewModel()
     val fitnessDetailState by fitnessViewModel.fitnessDetail
 
@@ -67,7 +67,7 @@ fun MyDetailScreen(fitnessId: Long, fitness: FitnessList){
         DetailImageCard(fitness)
         DetailGymInfo(fitness)
         Spacer(modifier = Modifier.height(15.dp))
-        MembershipScreen(fitness)
+        MembershipScreen(fitness, navController)
         Spacer(modifier = Modifier.height(20.dp))
     }
 }
@@ -346,7 +346,7 @@ fun DetailGymInfo(fitness: FitnessList){
 
 
 @Composable
-fun MembershipCard(title: String, price: String){
+fun MembershipCard(title: String, price: String, onClick: () -> Unit){
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -356,7 +356,9 @@ fun MembershipCard(title: String, price: String){
             .shadow(4.dp, RoundedCornerShape(16.dp)) // 그림자 추가 및 모양 설정
             .background(Color.White)
             .padding(15.dp)
-            .clip(RoundedCornerShape(16.dp)) // 모서리가 둥근 사각형으로 자르기
+            .clip(RoundedCornerShape(16.dp))
+    // 모서리가 둥근 사각형으로 자르기
+            .clickable { onClick() }
 
     ) {
         Column {
@@ -382,19 +384,30 @@ fun MembershipCard(title: String, price: String){
 }
 
 @Composable
-fun MembershipScreen(fitness: FitnessList) {
+fun MembershipScreen(fitness: FitnessList, navController: NavController) {
     Column {
-        MembershipCard(title = "1개월 회원권", price = "${fitness.monthprice}원~/월")
+        MembershipCard(
+            title = "1개월 회원권",
+            price = "${fitness.monthprice}원~/월",
+            onClick = {
+                navController.navigate("pay/${fitness.id}")
+            }
+        )
         Spacer(modifier = Modifier.height(5.dp))
-        MembershipCard(title = "3개월 회원권", price = "${fitness.threeprice}원~/월")
+        MembershipCard(
+            title = "3개월 회원권",
+            price = "${fitness.threeprice}원~/월",
+            onClick = {
+                navController.navigate("pay/${fitness.id}")
+            }
+        )
         Spacer(modifier = Modifier.height(5.dp))
-        MembershipCard(title = "6개월 회원권", price = "${fitness.sixprice}원~/월")
+        MembershipCard(
+            title = "6개월 회원권",
+            price = "${fitness.sixprice}원~/월",
+            onClick = {
+                navController.navigate("pay/${fitness.id}")
+            }
+        )
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun MyAppContentPreview() {
-//    //MyScroll()
-//    MyDetailScreen()
-//}

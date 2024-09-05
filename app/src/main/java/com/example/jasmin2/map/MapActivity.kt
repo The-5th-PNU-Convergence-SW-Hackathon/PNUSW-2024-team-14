@@ -1,18 +1,15 @@
-package com.example.jasmin2
+package com.example.jasmin2.map
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
 import com.example.jasmin2.R
-import com.kakao.vectormap.BuildConfig
 import com.kakao.vectormap.KakaoMapSdk
 import com.kakao.vectormap.LatLng
-import com.kakao.vectormap.camera.CameraUpdateFactory
 
 class MapActivity : AppCompatActivity() {
 
@@ -21,7 +18,7 @@ class MapActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        KakaoMapSdk.init(this, BuildConfig.KAKAO_MAP_KEY)
+        KakaoMapSdk.init(this, KAKAO_MAP_KEY)
         //KAKAO_MAP_KEY는 엑세스 키가 필요하며, 보안상 local.properties 파일에서 작성되었기 때문에 현재 값이 있지 않다.
 
         setContentView(R.layout.activity_map)  // activity_map.xml 레이아웃 사용

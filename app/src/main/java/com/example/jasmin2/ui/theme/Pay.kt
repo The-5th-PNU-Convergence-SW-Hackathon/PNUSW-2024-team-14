@@ -4,7 +4,6 @@ package com.example.jasmin2.ui.theme
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 
@@ -33,19 +32,16 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.jasmin2.R
+import coil.compose.rememberAsyncImagePainter
+import com.example.jasmin2.fitness.FitnessList
 
 @Composable
-fun PayScreen(navController: NavController) {
+fun PayScreen(navController: NavController, fitness: FitnessList, fitnessId: Long) {
     val allChecked = remember { mutableStateOf(false) }
     val termsChecked = remember { mutableStateOf(false) }
     val privacyChecked = remember { mutableStateOf(false) }
@@ -66,17 +62,17 @@ fun PayScreen(navController: NavController) {
             fontWeight = FontWeight.ExtraBold,
             color = Color.Black,
             modifier = Modifier
-                .offset(x=(-105).dp)
+                .offset(x = (-105).dp)
 
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        InfoCard()
+        InfoCard(fitness)
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        PayInfo()
+        PayInfo(fitness)
 
         Spacer(modifier = Modifier.height(5.dp))
 
@@ -158,9 +154,13 @@ fun PayScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = "전자금융거래 이용약관")
                 Spacer(modifier = Modifier.weight(1f))
-                Text(text = "보기", style = TextStyle(
-                    brush = Brush.linearGradient(
-                        colors = JasminGrad)))
+                Text(
+                    text = "보기", style = TextStyle(
+                        brush = Brush.linearGradient(
+                            colors = JasminGrad
+                        )
+                    )
+                )
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -186,9 +186,13 @@ fun PayScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = "개인정보처리방침 이용약관")
                 Spacer(modifier = Modifier.weight(1f))
-                Text(text = "보기",  style = TextStyle(
-                    brush = Brush.linearGradient(
-                        colors = JasminGrad)))
+                Text(
+                    text = "보기", style = TextStyle(
+                        brush = Brush.linearGradient(
+                            colors = JasminGrad
+                        )
+                    )
+                )
             }
         }
 
@@ -201,7 +205,7 @@ fun PayScreen(navController: NavController) {
         ) {
             Button(
                 onClick = {
-
+                    navController.navigate("refundcomplete")
                 },
                 modifier = Modifier
                     .align(Alignment.Center)
@@ -238,7 +242,7 @@ fun PayScreen(navController: NavController) {
 }
 
 @Composable
-fun InfoCard() {
+fun InfoCard(fitness: FitnessList) {
     Column(
         modifier = Modifier
             .height(150.dp)
@@ -248,7 +252,7 @@ fun InfoCard() {
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
-                painter = painterResource(id = R.drawable.gym2), // Replace with your actual image resource
+                painter = rememberAsyncImagePainter(fitness.imgtegst), // Replace with your actual image resource
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -260,7 +264,7 @@ fun InfoCard() {
 
             Column {
                 Text(
-                    text = "워너짐 장전점",
+                    text = fitness.name,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
@@ -278,7 +282,7 @@ fun InfoCard() {
 }
 
 @Composable
-fun PayInfo() {
+fun PayInfo(fitness: FitnessList) {
 
     Text(
         text = "판매자 주소",
@@ -286,7 +290,7 @@ fun PayInfo() {
         fontWeight = FontWeight.Bold,
         color = Color.Gray,
         modifier = Modifier
-            .offset(x=(-124).dp)
+            .offset(x = (-124).dp)
     )
 
     Spacer(modifier = Modifier.height(6.dp))
@@ -322,7 +326,7 @@ fun PayInfo() {
         fontWeight = FontWeight.Bold,
         color = Color.Gray,
         modifier = Modifier
-            .offset(x=(-140).dp)
+            .offset(x = (-140).dp)
     )
 
     Spacer(modifier = Modifier.height(6.dp))
@@ -348,30 +352,14 @@ fun PayInfo() {
 
 
         Text(
-            text = "45000원/월",
+            text = "${fitness.monthprice}",
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
 
-        )
+            )
 
         Spacer(modifier = Modifier.height(2.dp))
     }
 
-
-
-
-
-
-
-
-
-    }
-
-
-@Preview(showBackground = true)
-@Composable
-fun PayPreview() {
-
-    PayScreen(navController = rememberNavController())
 
 }

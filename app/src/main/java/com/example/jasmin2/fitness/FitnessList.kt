@@ -1,8 +1,4 @@
-package com.example.jasmin2
-
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
+package com.example.jasmin2.fitness
 
 
 data class FitnessList(

@@ -28,6 +28,7 @@ import com.example.jasmin2.ui.theme.RefundCompleteScreen
 import com.example.jasmin2.ui.theme.RefundScreen
 import com.example.jasmin2.ui.theme.ReportCompleteScreen
 import com.example.jasmin2.ui.theme.ReportScreen
+import com.example.jasmin2.ui.theme.SignupScreen
 import com.example.jasmin2.ui.theme.StartScreen
 import com.example.jasmin2.ui.theme.showNotification
 
@@ -63,6 +64,9 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
         composable("explain2"){Explain2(navController)}
         composable("home"){GymInfoScreen(navController)}
         composable("login"){ LoginScreen(navController)}
+
+        composable("signup") { SignupScreen(navController = navController, viewModel = viewModel()) }
+
         composable("scroll"){ MyScroll(navController)}
 
         composable(
@@ -75,7 +79,7 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
             fitnessId?.let { id ->
                 val fitness = fitnessViewModel.getFitnessById(id)
                 fitness?.let {
-                    MyDetailScreen(fitnessId = id, fitness = it) // id와 fitness 객체를 전달
+                    MyDetailScreen(fitnessId = id, fitness = it,navController = navController) // id와 fitness 객체를 전달
                 }
             }
         }
@@ -88,7 +92,21 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
         composable("refundcomplete"){ RefundCompleteScreen(navController)}
         composable("report"){ ReportScreen(navController)}
         composable("reportcomplete"){ ReportCompleteScreen(navController)}
-        composable("pay"){ PayScreen(navController)}
+        composable(
+            "pay/{fitnessId}",
+            arguments = listOf(navArgument("fitnessId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            val fitnessId = backStackEntry.arguments?.getLong("fitnessId")
+            val fitnessViewModel: MainViewModel = viewModel()
+
+            // fitnessId로 데이터를 가져와 PayScreen에 전달
+            fitnessId?.let { id ->
+                val fitness = fitnessViewModel.getFitnessById(id)
+                fitness?.let {
+                    PayScreen(navController = navController, fitness = it, fitnessId = id)
+                }
+            }
+        }
 
     }
 }

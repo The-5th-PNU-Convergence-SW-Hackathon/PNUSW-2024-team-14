@@ -25,7 +25,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String", "KAKAO_MAP_KEY", "{액세스 키}")
+        buildConfigField("String", "KAKAO_MAP_KEY", "\"ca3e7a14fbd5a1ae8dad87ac9db55743\"")
 
 
         ndk {
