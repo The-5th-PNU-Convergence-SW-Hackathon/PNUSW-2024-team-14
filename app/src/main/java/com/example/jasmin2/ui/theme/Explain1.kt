@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
+import kotlinx.coroutines.delay
 
 @Composable
 fun Explain1(navController: NavController) {
@@ -86,6 +87,7 @@ fun Explain1(navController: NavController) {
 
         Button(
             onClick = {
+
                 navController.navigate("explain2")
             },
             modifier = Modifier
@@ -96,7 +98,12 @@ fun Explain1(navController: NavController) {
                 .height(40.dp)
                 .clip(RoundedCornerShape(19.dp))
                 .background(
-                    brush= Brush.linearGradient(colors=JasminGrad, start= Offset.Zero,end= Offset.Infinite))
+                    brush = Brush.linearGradient(
+                        colors = JasminGrad,
+                        start = Offset.Zero,
+                        end = Offset.Infinite
+                    )
+                )
                 , // 버튼의 높이
 
             shape= RoundedCornerShape(15.dp),
