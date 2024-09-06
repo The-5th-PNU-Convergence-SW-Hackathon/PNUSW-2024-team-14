@@ -23,6 +23,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -39,12 +40,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.jasmin2.fitness.FitnessList
+import kotlinx.coroutines.delay
 
 @Composable
 fun PayScreen(navController: NavController, fitness: FitnessList, fitnessId: Long) {
     val allChecked = remember { mutableStateOf(false) }
     val termsChecked = remember { mutableStateOf(false) }
     val privacyChecked = remember { mutableStateOf(false) }
+
+    val isLoading = remember { mutableStateOf(false) } // 로딩 상태 관리
 
     Column(
         modifier = Modifier
@@ -203,40 +207,52 @@ fun PayScreen(navController: NavController, fitness: FitnessList, fitnessId: Lon
                 .fillMaxWidth()
                 .height(100.dp)
         ) {
-            Button(
-                onClick = {
-                    navController.navigate("refundcomplete")
-                },
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .offset(y = (-25).dp)
-                    .padding(bottom = 16.dp)
-                    .width(300.dp)  // 버튼의 가로 길이
-                    .height(40.dp)
-                    .clip(RoundedCornerShape(19.dp))
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = JasminGrad,
-                            start = Offset.Zero,
-                            end = Offset.Infinite
-                        )
-                    ), // 버튼의 높이
+            if (isLoading.value) {
+                // 로딩 애니메이션 표시
+                LoadingAnimation()
 
-                shape = RoundedCornerShape(15.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent, // 버튼의 기본 배경색을 투명하게 설정
-                    contentColor = Color.White // 텍스트 색상
-                ),
-                content = {
-                    Text(
-                        text = "다음",
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
+                // 4초 후 화면을 전환
+                LaunchedEffect(Unit) {
+                    delay(4000L) // 4초 대기
+                    navController.navigate("reportcomplete") // 다음 화면으로 전환 (이름은 원하는 대로 수정)
                 }
-            )
+            } else {
+
+                Button(
+                    onClick = {
+                        isLoading.value = true // 로딩 시작
+                    },
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .offset(y = (-25).dp)
+                        .padding(bottom = 16.dp)
+                        .width(300.dp)  // 버튼의 가로 길이
+                        .height(40.dp)
+                        .clip(RoundedCornerShape(19.dp))
+                        .background(
+                            brush = Brush.linearGradient(
+                                colors = JasminGrad,
+                                start = Offset.Zero,
+                                end = Offset.Infinite
+                            )
+                        ), // 버튼의 높이
+
+                    shape = RoundedCornerShape(15.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Transparent, // 버튼의 기본 배경색을 투명하게 설정
+                        contentColor = Color.White // 텍스트 색상
+                    ),
+                    content = {
+                        Text(
+                            text = "다음",
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
+                    }
+                )
+            }
         }
     }
 }
@@ -360,6 +376,4 @@ fun PayInfo(fitness: FitnessList) {
 
         Spacer(modifier = Modifier.height(2.dp))
     }
-
-
 }
