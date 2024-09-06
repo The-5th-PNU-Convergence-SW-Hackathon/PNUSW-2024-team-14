@@ -25,8 +25,10 @@ import com.example.jasmin2.ui.theme.MypageScreen
 import com.example.jasmin2.ui.theme.NotificationTestScreen
 import com.example.jasmin2.ui.theme.PayScreen
 import com.example.jasmin2.ui.theme.RefundCompleteScreen
+import com.example.jasmin2.ui.theme.RefundLoading
 import com.example.jasmin2.ui.theme.RefundScreen
 import com.example.jasmin2.ui.theme.ReportCompleteScreen
+import com.example.jasmin2.ui.theme.ReportLoading
 import com.example.jasmin2.ui.theme.ReportScreen
 import com.example.jasmin2.ui.theme.SignupScreen
 import com.example.jasmin2.ui.theme.StartScreen
@@ -57,7 +59,7 @@ fun MyAppContentPreview() {
 @Composable
 fun NavGraph(navController: NavController, initialIntent: Intent?) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "start") {
+    NavHost(navController = navController, startDestination = "notitest") {
         composable("start") { StartScreen(navController) }
         composable("mypage") { MypageScreen(navController) }
         composable("explain1"){Explain1(navController)}
@@ -106,6 +108,14 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
                     PayScreen(navController = navController, fitness = it, fitnessId = id)
                 }
             }
+        }
+
+        composable("RefundLoading") {
+            RefundLoading(navController = navController) // 로딩 화면 추가
+        }
+
+        composable("ReportLoading") {
+            ReportLoading(navController = navController)
         }
 
     }

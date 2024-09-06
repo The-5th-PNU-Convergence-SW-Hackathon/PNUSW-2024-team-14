@@ -28,13 +28,10 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
-
 
 @Composable
 fun LoadingAnimation(
@@ -110,9 +107,4 @@ fun LoadingAnimation(
 
         )
     }
-}
-@Preview(showBackground = true)
-@Composable
-private fun LoadaniPreview() {
-    LoadingAnimation()
 }

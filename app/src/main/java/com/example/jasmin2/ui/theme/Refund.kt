@@ -129,7 +129,7 @@ fun RefundForm(navController:NavController) {
         OutlinedTextField(
             value = bankName,
             onValueChange = { bankName = it },
-            label = { Text(text = "은행명") },
+            label = { Text(text = "지갑 주소") },
             modifier = Modifier
                 .width(350.dp),
             singleLine = true,
@@ -143,21 +143,6 @@ fun RefundForm(navController:NavController) {
         )
 
 
-
-        OutlinedTextField(
-            value = accountNumber,
-            onValueChange = { accountNumber = it },
-            label = { Text(text = "계좌번호") },
-            modifier = Modifier.width(350.dp),
-            singleLine = true,
-            shape = RoundedCornerShape(30.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White, // 포커스 되었을 때 테두리 색상
-                unfocusedBorderColor = Color.White, // 포커스되지 않았을 때 테두리 색상
-                containerColor = Color.White, // 텍스트 필드 내부 배경색
-                focusedTextColor = Color.Black
-            )
-        )
 
 
 
@@ -205,7 +190,7 @@ fun RefundForm(navController:NavController) {
         ) {
             Button(
                 onClick = {
-                    navController.navigate("refundcomplete")
+                    navController.navigate("RefundLoading")
                 },
                 modifier = Modifier
                     .align(Alignment.Center)
@@ -229,7 +214,7 @@ fun RefundForm(navController:NavController) {
                 ),
                 content = {
                     Text(
-                        text = "다음",
+                        text = "승인",
                         style = androidx.compose.ui.text.TextStyle(
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
