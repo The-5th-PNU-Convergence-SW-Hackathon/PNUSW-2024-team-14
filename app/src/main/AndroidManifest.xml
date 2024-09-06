@@ -44,6 +44,8 @@
         <meta-data
             android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
             android:value="KAKAO_MAP_KEY" />
+
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
     </application>
 
 </manifest>
