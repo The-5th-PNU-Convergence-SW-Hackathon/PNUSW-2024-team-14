@@ -1,4 +1,4 @@
-package com.example.jasmin2.ui.theme
+package com.example.jasmin2.pagenation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

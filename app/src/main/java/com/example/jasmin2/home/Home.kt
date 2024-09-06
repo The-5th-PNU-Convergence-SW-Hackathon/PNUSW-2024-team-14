@@ -1,4 +1,4 @@
-package com.example.jasmin2.ui.theme
+package com.example.jasmin2.home
 
 import android.content.Intent
 import androidx.compose.foundation.Image
@@ -42,6 +42,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.map.MapActivity
 import com.example.jasmin2.R
+import com.example.jasmin2.ui.theme.JasminGrad
 
 @Composable
 fun GymInfoScreen(navController: NavController) {

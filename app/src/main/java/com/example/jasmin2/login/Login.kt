@@ -1,4 +1,4 @@
-package com.example.jasmin2.ui.theme
+package com.example.jasmin2.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,7 +29,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -49,7 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.jasmin2.MainViewModel
+import com.example.jasmin2.ui.theme.JasminGrad
 
 
 @Composable
@@ -110,7 +109,7 @@ fun LoginScreen(navController: NavController) {
                         .height(40.dp)
                         .clip(RoundedCornerShape(19.dp))
                         .background(
-                            brush= Brush.linearGradient(colors=JasminGrad, start= Offset.Zero,end= Offset.Infinite))
+                            brush= Brush.linearGradient(colors= JasminGrad, start= Offset.Zero,end= Offset.Infinite))
                     , // 버튼의 높이
 
                     shape= RoundedCornerShape(15.dp),

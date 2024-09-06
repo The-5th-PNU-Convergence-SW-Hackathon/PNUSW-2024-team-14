@@ -1,9 +1,7 @@
-package com.example.jasmin2.ui.theme
+package com.example.jasmin2.home
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideInVertically
 
 
 import androidx.compose.foundation.background
@@ -24,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -36,6 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.jasmin2.ui.theme.Jasmin2Theme
+import com.example.jasmin2.ui.theme.JasminGrad
+import com.example.jasmin2.ui.theme.montsFamily
 
 import kotlinx.coroutines.delay
 

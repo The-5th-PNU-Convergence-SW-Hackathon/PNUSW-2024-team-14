@@ -1,6 +1,6 @@
 package com.example.jasmin2
 
-import Explain2
+import com.example.jasmin2.home.Explain2
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,24 +15,23 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.jasmin2.ui.theme.CloseScreen
-import com.example.jasmin2.ui.theme.Explain1
-import com.example.jasmin2.ui.theme.GymInfoScreen
-import com.example.jasmin2.ui.theme.LoginScreen
-import com.example.jasmin2.ui.theme.MyDetailScreen
+import com.example.jasmin2.home.Explain1
+import com.example.jasmin2.home.GymInfoScreen
+import com.example.jasmin2.login.LoginScreen
+import com.example.jasmin2.pagenation.MyDetailScreen
 
-import com.example.jasmin2.ui.theme.MyScroll
-import com.example.jasmin2.ui.theme.MypageScreen
+import com.example.jasmin2.pagenation.MyScroll
+import com.example.jasmin2.pagenation.MypageScreen
 import com.example.jasmin2.ui.theme.NotificationTestScreen
 import com.example.jasmin2.ui.theme.PayScreen
-import com.example.jasmin2.ui.theme.RefundCompleteScreen
-import com.example.jasmin2.ui.theme.RefundLoading
+import com.example.jasmin2.completepage.RefundCompleteScreen
+import com.example.jasmin2.loadinganimation.RefundLoading
 import com.example.jasmin2.ui.theme.RefundScreen
-import com.example.jasmin2.ui.theme.ReportCompleteScreen
-import com.example.jasmin2.ui.theme.ReportLoading
+import com.example.jasmin2.completepage.ReportCompleteScreen
+import com.example.jasmin2.loadinganimation.ReportLoading
 import com.example.jasmin2.ui.theme.ReportScreen
-import com.example.jasmin2.ui.theme.SignupScreen
-import com.example.jasmin2.ui.theme.StartScreen
-import com.example.jasmin2.ui.theme.showNotification
+import com.example.jasmin2.login.SignupScreen
+import com.example.jasmin2.home.StartScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,17 +58,17 @@ fun MyAppContentPreview() {
 @Composable
 fun NavGraph(navController: NavController, initialIntent: Intent?) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "notitest") {
+    NavHost(navController = navController, startDestination = "start") {
         composable("start") { StartScreen(navController) }
         composable("mypage") { MypageScreen(navController) }
-        composable("explain1"){Explain1(navController)}
-        composable("explain2"){Explain2(navController)}
-        composable("home"){GymInfoScreen(navController)}
-        composable("login"){ LoginScreen(navController)}
+        composable("explain1"){ Explain1(navController) }
+        composable("explain2"){ Explain2(navController) }
+        composable("home"){ GymInfoScreen(navController) }
+        composable("login"){ LoginScreen(navController) }
 
         composable("signup") { SignupScreen(navController = navController, viewModel = viewModel()) }
 
-        composable("scroll"){ MyScroll(navController)}
+        composable("scroll"){ MyScroll(navController) }
 
         composable(
             "detail/{fitnessId}",
@@ -91,9 +90,9 @@ fun NavGraph(navController: NavController, initialIntent: Intent?) {
             NotificationTestScreen(navController, initialIntent)
         }
         composable("refund"){ RefundScreen(navController)}
-        composable("refundcomplete"){ RefundCompleteScreen(navController)}
+        composable("refundcomplete"){ RefundCompleteScreen(navController) }
         composable("report"){ ReportScreen(navController)}
-        composable("reportcomplete"){ ReportCompleteScreen(navController)}
+        composable("reportcomplete"){ ReportCompleteScreen(navController) }
         composable(
             "pay/{fitnessId}",
             arguments = listOf(navArgument("fitnessId") { type = NavType.LongType })

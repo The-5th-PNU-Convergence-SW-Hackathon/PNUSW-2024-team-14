@@ -1,4 +1,4 @@
-package com.example.jasmin2.ui.theme
+package com.example.jasmin2.loadinganimation
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearOutSlowInEasing
@@ -31,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.jasmin2.ui.theme.JasminGrad
 import kotlinx.coroutines.delay
 
 @Composable

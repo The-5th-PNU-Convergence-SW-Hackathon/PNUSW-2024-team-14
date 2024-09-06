@@ -1,4 +1,4 @@
-package com.example.jasmin2.ui.theme
+package com.example.jasmin2.completepage
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -20,15 +20,11 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -46,7 +42,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,12 +49,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jasmin2.R
-import java.time.format.TextStyle
+import com.example.jasmin2.ui.theme.JasminGrad
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RefundCompleteScreen(navController: NavController) {
+fun ReportCompleteScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -77,13 +72,13 @@ fun RefundCompleteScreen(navController: NavController) {
             )
         }
     ) {
-        RefundCompleteForm(navController)
+        ReportCompleteForm(navController)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RefundCompleteForm(navController: NavController) {
+fun ReportCompleteForm(navController: NavController) {
     var bankName by remember { mutableStateOf(TextFieldValue("")) }
     var accountNumber by remember { mutableStateOf(TextFieldValue("")) }
     var accountHolder by remember { mutableStateOf(TextFieldValue("")) }
@@ -111,7 +106,7 @@ fun RefundCompleteForm(navController: NavController) {
         )
 
         Text(
-            text = "완료되었습니다!",
+            text = "신고가 접수되었습니다!",
             color = Color.Black,
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
@@ -129,7 +124,21 @@ fun RefundCompleteForm(navController: NavController) {
 
 
 
+        Text(
+            text = "빠르게 확인 후",
+            color = Color.Black,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(top = 195.dp)
+        )
 
+        Text(
+            text = "알림으로 알려드릴게요!",
+            color = Color.Black,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.Bold,
+        )
         Spacer(modifier = Modifier.weight(1f))
 
 
@@ -140,6 +149,8 @@ fun RefundCompleteForm(navController: NavController) {
 
 
         ) {
+
+
             Button(
                 onClick = {
                     navController.navigate("home")
@@ -181,6 +192,6 @@ fun RefundCompleteForm(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun RefundCompletePreview() {
-    RefundCompleteScreen(navController = rememberNavController())
+fun ReportCompletePreview() {
+    ReportCompleteScreen(navController = rememberNavController())
 }
