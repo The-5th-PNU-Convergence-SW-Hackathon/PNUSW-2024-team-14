@@ -137,7 +137,7 @@ fun LoginScreen(navController: NavController) {
             ) {
                 Text("페이퍼가 처음이신가요?")
                 Text(
-                    text = "가입하기",
+                    text = " 가입하기",
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable {
                         navController.navigate("signup") },

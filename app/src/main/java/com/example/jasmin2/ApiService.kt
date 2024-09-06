@@ -26,7 +26,10 @@ interface ApiService {
     suspend fun getFitnessById(@Path("id") id: Long): FitnessList
 
     @POST("login")
-    suspend fun login(@Field("username") username: String, @Field("password") password: String): Response<LoginResponse>
+    suspend fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Response<LoginResponse>
 
     @FormUrlEncoded
     @POST("register")
