@@ -100,7 +100,7 @@ fun LoadingAnimation(
             }
         }
         Text(
-            text = "결제가 진행되고 있습니다",
+            text = "정보가 입력되고 있습니다",
             style = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold

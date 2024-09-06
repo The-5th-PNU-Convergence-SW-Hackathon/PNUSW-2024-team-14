@@ -53,7 +53,7 @@ fun MyAppContentPreview() {
 @Composable
 fun NavGraph(navController: NavController, initialIntent: Intent?) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "start") {
+    NavHost(navController = navController, startDestination = "explain1") {
         composable("start") { StartScreen(navController) }
         composable("mypage") { MypageScreen(navController) }
         composable("explain1"){Explain1(navController)}

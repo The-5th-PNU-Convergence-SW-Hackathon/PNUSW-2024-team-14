@@ -31,6 +31,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,12 +50,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 import java.time.format.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RefundScreen(navController: NavController) {
+    var isLoading by remember { mutableStateOf(false) } // 로딩 상태 관리
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -104,13 +108,24 @@ fun RefundScreen(navController: NavController) {
             )
         }
     ) {
-        RefundForm(navController)
+        if (isLoading) {
+            // 로딩 애니메이션을 표시
+            LoadingAnimation()
+
+            // 4초 후 화면을 전환
+            LaunchedEffect(Unit) {
+                delay(4000L) // 4초 대기
+                navController.navigate("refundcomplete")
+            }
+        } else {
+            RefundForm(navController = navController, onSubmit = { isLoading = true })
+        }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RefundForm(navController:NavController) {
+fun RefundForm(navController: NavController, onSubmit: () -> Unit) {
     var bankName by remember { mutableStateOf(TextFieldValue("")) }
     var accountNumber by remember { mutableStateOf(TextFieldValue("")) }
     var accountHolder by remember { mutableStateOf(TextFieldValue("")) }
@@ -120,46 +135,25 @@ fun RefundForm(navController:NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF3F5F7)),
-        verticalArrangement = Arrangement.spacedBy(16.dp), // 상단과 하단에 요소 배치
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
-
     ) {
         Spacer(modifier = Modifier.height(80.dp))
 
         OutlinedTextField(
             value = bankName,
             onValueChange = { bankName = it },
-            label = { Text(text = "은행명") },
-            modifier = Modifier
-                .width(350.dp),
-            singleLine = true,
-            shape = RoundedCornerShape(30.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White, // 포커스 되었을 때 테두리 색상
-                unfocusedBorderColor = Color.White, // 포커스되지 않았을 때 테두리 색상
-                containerColor = Color.White, // 텍스트 필드 내부 배경색
-                focusedTextColor = Color.Black
-            )
-        )
-
-
-
-        OutlinedTextField(
-            value = accountNumber,
-            onValueChange = { accountNumber = it },
-            label = { Text(text = "계좌번호") },
+            label = { Text(text = "지갑 주소") },
             modifier = Modifier.width(350.dp),
             singleLine = true,
             shape = RoundedCornerShape(30.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White, // 포커스 되었을 때 테두리 색상
-                unfocusedBorderColor = Color.White, // 포커스되지 않았을 때 테두리 색상
-                containerColor = Color.White, // 텍스트 필드 내부 배경색
+                focusedBorderColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                containerColor = Color.White,
                 focusedTextColor = Color.Black
             )
         )
-
-
 
         OutlinedTextField(
             value = accountHolder,
@@ -169,14 +163,12 @@ fun RefundForm(navController:NavController) {
             singleLine = true,
             shape = RoundedCornerShape(30.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White, // 포커스 되었을 때 테두리 색상
-                unfocusedBorderColor = Color.White, // 포커스되지 않았을 때 테두리 색상
-                containerColor = Color.White, // 텍스트 필드 내부 배경색
+                focusedBorderColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                containerColor = Color.White,
                 focusedTextColor = Color.Black
             )
         )
-
-
 
         OutlinedTextField(
             value = phoneNumber,
@@ -187,31 +179,29 @@ fun RefundForm(navController:NavController) {
             shape = RoundedCornerShape(30.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White, // 포커스 되었을 때 테두리 색상
-                unfocusedBorderColor = Color.White, // 포커스되지 않았을 때 테두리 색상
-                containerColor = Color.White, // 텍스트 필드 내부 배경색
+                focusedBorderColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                containerColor = Color.White,
                 focusedTextColor = Color.Black
             )
         )
-        Spacer(modifier = Modifier.weight(1f))
 
+        Spacer(modifier = Modifier.weight(1f))
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
-
-
         ) {
             Button(
                 onClick = {
-                    navController.navigate("refundcomplete")
+                    onSubmit() // 버튼을 누르면 로딩 상태로 전환
                 },
                 modifier = Modifier
                     .align(Alignment.Center)
                     .offset(y = (-25).dp)
                     .padding(bottom = 16.dp)
-                    .width(300.dp)  // 버튼의 가로 길이
+                    .width(300.dp)
                     .height(40.dp)
                     .clip(RoundedCornerShape(19.dp))
                     .background(
@@ -220,16 +210,15 @@ fun RefundForm(navController:NavController) {
                             start = Offset.Zero,
                             end = Offset.Infinite
                         )
-                    ), // 버튼의 높이
-
+                    ),
                 shape = RoundedCornerShape(15.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent, // 버튼의 기본 배경색을 투명하게 설정
-                    contentColor = Color.White // 텍스트 색상
+                    containerColor = Color.Transparent,
+                    contentColor = Color.White
                 ),
                 content = {
                     Text(
-                        text = "다음",
+                        text = "승인",
                         style = androidx.compose.ui.text.TextStyle(
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
@@ -239,7 +228,7 @@ fun RefundForm(navController:NavController) {
             )
         }
     }
-    }
+}
 
 
 @Preview(showBackground = true)
