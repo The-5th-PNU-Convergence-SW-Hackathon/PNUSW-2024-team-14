@@ -369,9 +369,7 @@ https://github.com/user-attachments/assets/70b479ef-851e-430f-9f76-b119e8fe3d84
 [APK 드라이브](https://drive.google.com/file/d/1yJMPVmnZXisfN_Gc7vMa-p_CNnMgf_0d/view?usp=sharing)
 
 ## 5. 소개 및 시연 영상
-> 프로젝트에 대한 소개와 시연 영상을 넣으세요.
-> 프로젝트 소개 동영상을 교육원 메일(swedu@pusan.ac.kr)로 제출 이후 센터에서 부여받은 youtube URL주소를 넣으세요.
-
+> https://youtu.be/czMydZbLipo
 ## 6. 팀 소개
 |이준영 | 신승훈 | 문진서 | 지아선 | 백승광 |
 |:-------:|:-------:|:-------:|:-------:|:-------:|
